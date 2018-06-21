@@ -1,0 +1,145 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="EDCADS" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="JDBC/MDSLD"></property>
+	</bean>
+	<!-- Hibernate Session Factory -->
+	<bean id="edcaSessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref local="EDCADS" />
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>edca-hibernate-mapping.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.query.factory_class">
+					org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory
+				</prop>
+
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle9Dialect</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
+				<prop key="hibernate.connection.autocommit">true</prop>
+				<prop key="hibernate.max_fetch_depth">3</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.jdbc.batch_size">150</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- Start of Transaction Manager -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="edcaSessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="txProxyTemplate" abstract="true"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="save*">PROPAGATION_REQUIRED,ISOLATION_DEFAULT</prop>
+				<prop key="update*">PROPAGATION_REQUIRED,ISOLATION_DEFAULT</prop>
+				<prop key="match*">PROPAGATION_REQUIRED,ISOLATION_DEFAULT</prop>
+				<prop key="create*">PROPAGATION_REQUIRED,ISOLATION_DEFAULT</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="repository" parent="txProxyTemplate">
+		<property name="target">
+			<ref bean="simpleRepository" />
+		</property>
+	</bean>
+
+	<bean id="simpleRepository" class="com.bt.edca.repository.Repository">
+		<property name="sessionFactory">
+			<ref local="edcaSessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="hibernateUtil" class="com.bt.edca.da.util.HibernateUtil">
+		<property name="sessionFactory">
+			<ref bean="edcaSessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="customerDetailsDao" class="com.bt.edca.dao.impl.CustomerDetailsDaoImpl" />
+
+	<bean id="additionalInformationDao" class="com.bt.edca.dao.impl.AdditionalInformationDaoImpl" />
+
+
+	<bean id="productSelectionDao" class="com.bt.edca.dao.impl.ProductSelectionDaoImpl" />
+
+	<bean id="cpeOrderingDao" class="com.bt.edca.dao.impl.CPEOrderingDaoImpl" />
+
+	<bean id="cpeConfigureDao" class="com.bt.edca.dao.impl.CPEConfigureDaoImpl" />
+
+
+
+	<bean id="siteContactDetailsDao" class="com.bt.edca.dao.impl.SiteContactDetailsDaoImpl" />
+
+	<bean id="orderSearchDao" class="com.bt.edca.dao.impl.OrderSearchDaoImpl" />
+
+	<bean id="siteLocationsDao" class="com.bt.edca.dao.impl.SiteLocationsDaoImpl" />
+
+	<bean id="customerContactDetailsDao" class="com.bt.edca.dao.impl.CustomerContactDetailsDaoImpl" />
+
+	<bean id="siteLocationDetailsDao" class="com.bt.edca.dao.impl.SiteLocationDetailsDaoImpl" />
+
+	<bean id="sitePageDao" class="com.bt.edca.dao.impl.SitePageDaoImpl" />
+
+	<bean id="configureLanSwitchNetScreenDao" class="com.bt.edca.dao.impl.ConfigureLanSwitchNetScreenDaoImpl" />
+
+
+	<bean id="configureAccessTypeDao" class="com.bt.edca.dao.impl.ConfigureAccessTypeDaoImpl" />
+
+	<bean id="userDetailsDao" class="com.bt.edca.dao.impl.UserDetailsDaoImpl" />
+
+
+
+
+	<bean id="siteAddressDao" class="com.bt.edca.dao.impl.SiteAddressDaoImpl" />
+
+
+	<bean id="configureAccessDao" class="com.bt.edca.dao.impl.ConfigureAccessDaoImpl" />
+
+	<bean id="sitesPageDetailsDao" class="com.bt.edca.dao.impl.SitesPageDetailsDaoImpl" />
+
+
+
+
+	<bean id="vpnPageDao" class="com.bt.edca.dao.impl.VpnPageDaoImpl"/>
+
+	<bean id="serviceInstancesDao" class="com.bt.edca.dao.impl.ServiceInstancesDaoImpl"/>
+	
+	<bean id="configureWicnmpaDao" class="com.bt.edca.dao.impl.ConfigureWicnmpaDaoImpl"/>
+	<bean id="vpnConnectionDao" class="com.bt.edca.dao.impl.VpnConnectionDaoImpl"/>
+	<bean id="vpnServiceDao" class="com.bt.edca.dao.impl.VpnServiceDaoImpl"/>
+	<bean id="configureLanCardsDao" class="com.bt.edca.dao.impl.ConfigureLanCardsDaoImpl"/>
+	<bean id="dscpCosDao" class="com.bt.edca.dao.impl.DSCPCosDaoImpl"/>
+	
+	<bean id="configureVlanDao" class="com.bt.edca.dao.impl.ConfigureVlanDaoImpl"/>
+
+	
+
+	
+
+	
+	<bean id="vpnServicesDetailsDao" class="com.bt.edca.dao.impl.VPNServicesDetailsDaoImpl" />
+	<bean id="configureOtherDeviceDao" class="com.bt.edca.dao.impl.ConfigureOtherDeviceDaoImpl" />
+
+	<bean id="configureCardCableDao" class="com.bt.edca.dao.impl.ConfigureCardCableDaoImpl" />
+
+
+</beans>

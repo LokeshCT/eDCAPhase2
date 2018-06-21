@@ -1,0 +1,40 @@
+###############################################
+# Common Build Properties File
+###############################################
+
+edca.root=${basedir}/../
+
+edca.build.dir=${edca.root}/build
+
+edca.dist.dir = ${edca.build.dir}/dist
+ 
+edca.src.dir = ${edca.root}/java-src
+
+edca.component=${edca.root}/build/component.properties
+
+edca.dependancies.dir=${basedir}/../../Dependancies
+
+apis.dependancies.dir=${edca.dependancies.dir}/other-repository
+
+btapis.dependancies.dir=${edca.dependancies.dir}/bt-repository
+
+localapis.dependancies.dir=${edca.root}/../Dependancies/
+
+edca.ivy.root=${edca.build.dir}/ivy
+ivy.cache.dir=${edca.build.dir}/ivy-cache
+
+war.build.dir=${edca.dist.dir}/war
+
+junit.classpath=${edca.build.dir}/edca-web/classes
+junit.report=${edca.build.dir}/junit-reports
+pmd.report=${edca.build.dir}/pmd-reports
+findbugs.report=${edca.build.dir}/findbugs-reports
+findbugs.home.dir=/all_other_software/gstest/home/software/findbugs-3.0.1
+
+checkstyle.home.dir=/all_other_software/gstest/home/software/checkstyle
+report.checkstyle.dir=${edca.build.dir}/checkstyle-reports
+
+#jb.component.build.dir=
+edca.component.debug=true
+edca.component.deprecation=off
+edca.compile.fail.on.error=true

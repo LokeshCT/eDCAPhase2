@@ -1,0 +1,162 @@
+package com.bt.edca.dao.impl;
+
+import com.bt.edca.da.util.HibernateQueryUtil;
+import com.bt.edca.da.util.HibernateUtil;
+import com.bt.edca.dao.SiteContactDetailsDao;
+import com.bt.edca.exception.SystemException;
+import com.bt.edca.util.EdcaLogger;
+import org.hibernate.Session;
+import org.hibernate.internal.SessionImpl;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+/**
+ * Description: SiteContactDetailsDaoImpl implements SiteContactDetailsDao and
+ * getting the Database connection and saving the result in the .
+ * siteContactDetailsList List.
+ * 
+ * @author Rohit
+ * 
+ */
+public class SiteContactDetailsDaoImpl implements SiteContactDetailsDao {
+
+  /**
+   * captures logs onto console.
+   */
+  private static EdcaLogger logger = EdcaLogger.getLogger(SiteContactDetailsDao.class);
+
+  /**
+   * Description : Getting the DB connection and fetching all the values and
+   * returning in the values in the siteContactDetailsList.
+   * 
+   * @param siteLocationId
+   *          .
+   * @return siteContactDetailsList .
+   */
+  public List getSiteContactDetails(String siteLocationId, String[] contactTypes) {
+
+    List siteContactDetailsList = HibernateQueryUtil
+        .executeQuery(GET_SITE_CONTACT_DETAILS_LIST_BY_SITE_LOCATION_ID,
+        new String[] {
+            "siteLocationId", "contactType" }, new Object[] { siteLocationId, contactTypes });
+
+    return siteContactDetailsList;
+  }
+
+  /**
+   * method implementation to save sitecontactdetails into DB. Values are
+   * getting stored with procedure.
+   *
+   */
+  public void saveSiteContactDetails(String siteLocationId, HttpServletRequest request) {
+
+    int siteLocationIdDao = Integer.parseInt(siteLocationId);
+
+    HttpSession session = request.getSession();
+
+    String pcontactType = "P";
+    String scontactType = "S";
+
+    String pfirstname = (String) session.getAttribute("p_firstName");
+    String plastname = (String) session.getAttribute("p_lastName");
+    String pjobTitle = (String) session.getAttribute("p_JobTitle");
+    String pemail = (String) session.getAttribute("p_Email");
+    String ptelephone = (String) session.getAttribute("p_Telephone");
+    String pmobilePager = (String) session.getAttribute("p_mobilePager");
+    String pcontactId = (String) session.getAttribute("p_contact_id");
+
+    String sfirstname = (String) session.getAttribute("s_FirstName");
+    String slastname = (String) session.getAttribute("s_LastName");
+    String sjobTitle = (String) session.getAttribute("s_JobTitle");
+    String semail = (String) session.getAttribute("s_Email");
+    String stelephone = (String) session.getAttribute("s_Telephone");
+    String smobilePager = (String) session.getAttribute("s_Mobilepager");
+    String scontactId = (String) session.getAttribute("s_contact_id");
+
+    Session sessions = HibernateUtil.getSession();
+    SessionImpl sessimpl = (SessionImpl) sessions;
+    Connection conn = sessimpl.connection();
+    CallableStatement statement = null;
+    ResultSet rs = null;
+
+    try {
+
+      statement = conn.prepareCall(SAVE_PRIMARY_SITE_CONTACT_DETAILS);
+
+      statement.setInt(1, siteLocationIdDao);
+      statement.setString(2, pcontactType);
+      statement.setString(3, pcontactId);
+      statement.setString(4, pfirstname);
+      statement.setString(5, plastname);
+      statement.setString(6, pjobTitle);
+      statement.setString(7, pemail);
+      statement.setString(8, ptelephone);
+      statement.setString(9, pmobilePager);
+      statement.registerOutParameter(10, oracle.jdbc.OracleTypes.VARCHAR);
+
+      statement.execute();
+
+    } catch (SQLException e) {
+      logger.error(e.getMessage(), e);
+    }
+
+    finally {
+      try {
+        if (rs != null) {
+          rs.close();
+        }
+
+        if (null != statement) {
+          statement.close();
+
+        }
+      } catch (SQLException e) {
+        throw new SystemException(e);
+      }
+    }
+
+    try {
+      statement = conn.prepareCall(SAVE_SECONDARY_SITE_CONTACT_DETAILS);
+
+      statement.setInt(1, siteLocationIdDao);
+      statement.setString(2, scontactType);
+      statement.setString(3, scontactId);
+      statement.setString(4, sfirstname);
+      statement.setString(5, slastname);
+      statement.setString(6, sjobTitle);
+      statement.setString(7, semail);
+      statement.setString(8, stelephone);
+      statement.setString(9, smobilePager);
+      statement.registerOutParameter(10, oracle.jdbc.OracleTypes.VARCHAR);
+
+      statement.execute();
+
+    } catch (SQLException e) {
+      logger.error(e.getMessage(), e);
+    }
+
+    finally {
+      try {
+        if (rs != null) {
+          rs.close();
+        }
+
+        if (null != statement) {
+          statement.close();
+
+        }
+      } catch (SQLException e) {
+        throw new SystemException(e);
+      }
+    }
+
+  }
+
+}

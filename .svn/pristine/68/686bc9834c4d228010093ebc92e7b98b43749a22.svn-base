@@ -1,0 +1,7 @@
+<ivy-module version="1.0">
+    <info organisation="quartz" module="quartz" revision="2.2.1" status="release"/>
+	<publications>
+		<artifact name="quartz-2.2.1" type="jar"/>		
+	</publications>
+
+</ivy-module>

@@ -1,0 +1,65 @@
+package com.bt.edca.web.controller.test;
+
+import com.bt.edca.common.dto.SitePageDTO;
+import junit.framework.TestCase;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.web.servlet.DispatcherServlet;
+
+/**
+ * Description : Test Class for Unit Testing.
+ * @author Niranjan das Basa.
+ *
+ */
+public class SitePageControllerTest extends TestCase {
+
+  /**
+   * DispatcherServlet.
+   */
+  private DispatcherServlet servlet;
+
+  /**
+   * @param name.
+   * @param servlet.
+   */
+  public SitePageControllerTest(String name, DispatcherServlet servlet) {
+    super(name);
+    this.servlet = servlet;
+  }
+
+  /**
+   * Description : Used to Test the values.
+   * @throws Exception.
+   * 
+   */
+  public void testGetSitePage() throws Exception {
+    System.out.println("Entering inside SitePageControllerTest"
+        + " - Method testGetSitePage");
+    MockHttpServletRequest request = new MockHttpServletRequest();
+    request.setMethod("GET");
+    request.setRequestURI("/sitepage/762");
+
+    MockHttpServletResponse response = new MockHttpServletResponse();
+    servlet.service(request, response);
+
+    SitePageDTO sitePageDTO = 
+        (SitePageDTO) request.getAttribute("SitePageDTO");
+
+    
+    assertEquals(200, response.getStatus());
+    assertNotNull(response.getContentAsString());
+//    assertEquals(null, sitePageDTO.getDcaReferenceId());
+    assertEquals("Bronze", sitePageDTO.getHighestSiteSla());
+    assertEquals("Standard", sitePageDTO.getResilience());
+    assertEquals("Global", sitePageDTO.getPricing());
+    assertEquals("2006-06-30", sitePageDTO.getCrd().toString());
+    assertEquals("D", sitePageDTO.getStructureCabling());
+    assertEquals(null, sitePageDTO.getZone());
+    assertEquals(null, sitePageDTO.getAccessOption());
+    assertEquals(null, sitePageDTO.getNativeultraset());
+    assertEquals(null, sitePageDTO.getOnvDemarcOption());
+    
+    System.out.println("Exiting from SitePageControllerTest -"
+        + " Method testGetSitePage");
+  }
+}

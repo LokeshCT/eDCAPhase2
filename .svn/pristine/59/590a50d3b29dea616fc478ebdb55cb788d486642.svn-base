@@ -1,0 +1,8 @@
+<ivy-module version="1.0">
+    <info organisation="jackson" module="jackson" revision="2.6.1" status="release"/>
+	<publications>
+	    <artifact name="jackson-annotations-2.6.1" type="jar"/>
+	    <artifact name="jackson-core-2.6.1" type="jar"/>
+ 	    <artifact name="jackson-databind-2.6.1" type="jar"/>
+   </publications>
+</ivy-module>

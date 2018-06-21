@@ -1,0 +1,24 @@
+function checkButton() {
+
+	if (document.getElementById('override').checked) {
+		alert("You are selecting an option to override the Secure\\Secure + behaviour. Please confirm this is correct and click OK to continue?");
+		return 1;
+	} else {
+		alert("Previous Provide was raised with Secure override option. This will require to re-configure the Access\\GPoP values  the Resilience is changed. Are you sure to continue?");
+		return 0;
+	}
+
+}
+
+function checkStructure() {
+	var str = document.getElementById('structureCabling').value;
+
+	if (document.getElementById('structureCabling').checked == true) {
+
+		return 1;
+	} else {
+
+		return 0;
+	}
+
+}

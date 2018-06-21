@@ -1,0 +1,6 @@
+<ivy-module version="1.0">
+    <info organisation="aopalliance" module="aopalliance" revision="1.0" status="release"/>
+	<publications>
+		<artifact name="aopalliance" type="jar"/>
+        </publications>
+</ivy-module>

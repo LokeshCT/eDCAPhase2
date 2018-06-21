@@ -1,0 +1,140 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+
+	<bean id="customerDetailsService" class="com.bt.edca.service.impl.CustomerDetailsServiceImpl">
+		<property name="customerDetailsDao" ref="customerDetailsDao" />
+	</bean>
+
+	<bean id="userDetailsService" class="com.bt.edca.service.impl.UserDetailsServiceImpl">
+		<property name="userDetailsDao" ref="userDetailsDao" />
+	</bean>
+
+	<bean id="cpeConfigureService" class="com.bt.edca.service.impl.CPEConfigureServiceImpl">
+		<property name="cpeConfigureDao" ref="cpeConfigureDao" />
+	</bean>
+
+	<bean id="customerContactDetailsService"
+		class="com.bt.edca.service.impl.CustomerContactDetailsServiceImpl">
+		<property name="customerContactDetailsDao" ref="customerContactDetailsDao" />
+	</bean>
+
+	<bean id="siteLocationDetailsService" class="com.bt.edca.service.impl.SiteLocationDetailsServiceImpl">
+		<property name="siteLocationDetailsDao" ref="siteLocationDetailsDao" />
+	</bean>
+
+	<bean id="additionalInformationService"
+		class="com.bt.edca.service.impl.AdditionalInformationServiceImpl">
+		<property name="additionalInformationDao" ref="additionalInformationDao" />
+	</bean>
+	<bean id="productSelectionService" class="com.bt.edca.service.impl.ProductSelectionServiceImpl">
+		<property name="productSelectionDao" ref="productSelectionDao" />
+	</bean>
+
+	<bean id="cpeOrderingService" class="com.bt.edca.service.impl.CPEOrderingServiceImpl">
+		<property name="cpeOrderingDao" ref="cpeOrderingDao" />
+	</bean>
+
+	<bean id="siteContactDetailsService" class="com.bt.edca.service.impl.SiteContactDetailsServiceImpl">
+		<property name="siteContactDetailsDao" ref="siteContactDetailsDao" />
+	</bean>
+	<bean id="orderSearchService" class="com.bt.edca.service.impl.OrderSearchServiceImpl">
+		<property name="orderSearchDao" ref="orderSearchDao" />
+	</bean>
+
+	<bean id="sitePageService" class="com.bt.edca.service.impl.SitePageServiceImpl">
+		<property name="sitePageDao" ref="sitePageDao" />
+	</bean>
+
+	<bean id="configureLanSwitchNetScreenService"
+		class="com.bt.edca.service.impl.ConfigureLanSwitchNetScreenServiceImpl">
+		<property name="configureLanSwitchNetScreenDao" ref="configureLanSwitchNetScreenDao" />
+	</bean>
+
+	<bean id="configureAccessTypeService" class="com.bt.edca.service.impl.ConfigureAccessTypeServiceImpl">
+		<property name="configureAccessTypeDao" ref="configureAccessTypeDao" />
+	</bean>
+
+
+
+	<bean id="siteAddressService" class="com.bt.edca.service.impl.SiteAddressServiceImpl">
+		<property name="siteAddressDao" ref="siteAddressDao" />
+	</bean>
+
+
+	<bean id="configureAccessService" class="com.bt.edca.service.impl.ConfigureAccessServiceImpl">
+		<property name="configureAccessDao" ref="configureAccessDao" />
+	</bean>
+
+	<bean id="sitesPageDetailsService" class="com.bt.edca.service.impl.SitesPageDetailsServiceImpl">
+		<property name="sitesPageDetailsDao" ref="sitesPageDetailsDao" />
+	</bean>
+
+
+	<bean id="siteLocationsService" class="com.bt.edca.service.impl.SiteLocationsServiceImpl">
+		<property name="siteLocationsDao" ref="siteLocationsDao" />
+	</bean>
+
+
+
+	<bean id="serviceInstancesService" class="com.bt.edca.service.impl.ServiceInstnacesServiceImpl">
+		<property name="serviceInstancesDao" ref="serviceInstancesDao" />
+	</bean>
+
+
+	<bean id="vpnPageService" class="com.bt.edca.service.impl.VpnPageServiceImpl">
+		<property name="vpnPageDao" ref="vpnPageDao" />
+	</bean>
+
+	<bean id="configureWicnmpaService" class="com.bt.edca.service.impl.ConfigureWicnmpaServiceImpl">
+		<property name="configureWicnmpaDao" ref="configureWicnmpaDao" />
+	</bean>
+	<bean id="vpnConnectionService" class="com.bt.edca.service.impl.VpnConnectionServiceImpl">
+		<property name="vpnConnectionDao" ref="vpnConnectionDao" />
+	</bean>
+	<bean id="vpnServiceService" class="com.bt.edca.service.impl.VpnServiceServiceImpl">
+		<property name="vpnServiceDao" ref="vpnServiceDao" />
+	</bean>
+
+	
+	<bean id="configureLanCardsService" class="com.bt.edca.service.impl.ConfigureLanCardsServiceImpl" >
+		<property name = "configureLanCardsDao" ref = "configureLanCardsDao"/> 		 		
+ 	</bean>
+ 	
+ 	<bean id="dscpCosService" class="com.bt.edca.service.impl.DSCPCosServiceImpl" >
+		<property name = "dscpCosDao" ref = "dscpCosDao"/> 		 		
+ 	</bean>
+ 	
+ 	<bean id="configureVlanService" class="com.bt.edca.service.impl.ConfigureVlanServiceImpl" >
+		<property name = "configureVlanDao" ref = "configureVlanDao"/> 		 		
+ 	</bean>
+	
+
+	<bean id="vpnServicesDetailsService" class="com.bt.edca.service.impl.VPNServicesDetailsServiceImpl">
+		<property name="vpnServicesDetailsDao" ref="vpnServicesDetailsDao" />
+	</bean>
+
+	<bean id="configureCardCableService" class="com.bt.edca.service.impl.ConfigureCardCableServiceImpl">
+		<property name="configureCardCableDao" ref="configureCardCableDao" />
+	</bean>
+
+
+	<bean id="configureOtherDeviceService"
+		class="com.bt.edca.service.impl.ConfigureOtherDeviceServiceImpl">
+		<property name="configureOtherDeviceDao" ref="configureOtherDeviceDao" />
+	</bean>
+
+	<aop:config>
+		<aop:aspect id="loggingAspect" ref="loggingAspect">
+			<aop:pointcut expression="execution(* com.bt..*(..))"
+				id="allCustomMethods" />
+			<aop:around method="edcaAroundAdvice" pointcut-ref="allCustomMethods" />
+		</aop:aspect>
+	</aop:config>
+
+
+
+</beans>

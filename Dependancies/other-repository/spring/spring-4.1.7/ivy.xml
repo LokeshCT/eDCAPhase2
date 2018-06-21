@@ -1,0 +1,16 @@
+<ivy-module version="1.0">
+    <info organisation="spring" module="spring" revision="4.1.7" status="release"/>
+	<publications>
+	    <artifact name="spring-aop-4.1.7.RELEASE" type="jar"/>
+	    <artifact name="spring-beans-4.1.7.RELEASE" type="jar"/>
+	    <artifact name="spring-webmvc-4.1.7.RELEASE" type="jar"/>
+		<artifact name="spring-context-4.1.7.RELEASE" type="jar"/>
+		<artifact name="spring-web-4.1.7.RELEASE" type="jar"/>		
+		<artifact name="spring-orm-4.1.7.RELEASE" type="jar"/>
+		<artifact name="spring-core-4.1.7.RELEASE" type="jar"/>
+		<artifact name="spring-expression-4.1.7.RELEASE" type="jar"/>				
+		<artifact name="spring-tx-4.1.7.RELEASE" type="jar"/>	
+		<artifact name="spring-jdbc-4.1.7.RELEASE" type="jar"/>	
+		<artifact name="spring-test-4.1.7.RELEASE" type="jar"/>
+   </publications>
+</ivy-module>

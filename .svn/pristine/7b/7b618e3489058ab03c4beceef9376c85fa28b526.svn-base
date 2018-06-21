@@ -1,0 +1,66 @@
+package com.bt.edca.web.controller.test;
+
+import com.bt.edca.common.dto.SiteAddressDTO;
+
+import junit.framework.TestCase;
+
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.web.servlet.DispatcherServlet;
+
+/**
+ * Unit Test for SiteAddress.
+ * 
+ * @author Jagankumar G.
+ *
+ */
+public class SiteAddressControllerTest extends TestCase {
+
+  /**
+   * handles the requests and responses.
+   */
+  private DispatcherServlet servlet;
+
+  /**
+   * @param name.
+   * @param servlet.
+   */
+  public SiteAddressControllerTest(String name, DispatcherServlet servlet) {
+    super(name);
+    this.servlet = servlet;
+  }
+
+  /**
+   * throws Exception. When the user try access with invalid orderId or URL.
+   */
+
+  public void testGetSiteAddress() throws Exception {
+    System.out.println("Entering inside SiteAddressTest - "
+        + "" + "Method testGetSiteAddressDetails");
+    MockHttpServletRequest request = new MockHttpServletRequest();
+    request.setMethod("GET");
+    request.setRequestURI("/siteaddress/3094");
+
+    MockHttpServletResponse response = new MockHttpServletResponse();
+    servlet.service(request, response);
+
+    SiteAddressDTO siteAddressDTO = (SiteAddressDTO) request
+        .getAttribute("siteAddressDTO");
+
+    assertEquals(200, response.getStatus());
+    assertNotNull(response.getContentAsString());
+    assertEquals("1", 
+        siteAddressDTO.getFloor());
+    assertEquals("comms", siteAddressDTO.getRoom());
+    assertEquals("23", siteAddressDTO.getBuildingNumber());
+    assertEquals("WASSENAARSEWEG", siteAddressDTO.getAddressLine1());
+    assertEquals(null, siteAddressDTO.getAddressLine2());
+    assertEquals("LEIDEN", siteAddressDTO.getCity());
+    assertEquals("2333 AL", siteAddressDTO.getPostcode());
+    assertEquals("LEIDEN", siteAddressDTO.getState());
+    assertEquals(3094,siteAddressDTO.getSiteLocationId());
+
+    System.out.println("Exiting from SiteAddressTest -"
+        + "" + " Method testGetSiteAddress");
+  }
+}

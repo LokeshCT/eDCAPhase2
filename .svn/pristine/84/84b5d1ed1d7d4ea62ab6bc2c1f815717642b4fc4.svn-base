@@ -1,0 +1,6 @@
+<ivy-module version="1.0">
+    <info organisation="commons-logging" module="commons-logging" revision="1.2" status="release"/>
+	<publications>
+		<artifact name="commons-logging" type="jar"/>
+        </publications>
+</ivy-module>

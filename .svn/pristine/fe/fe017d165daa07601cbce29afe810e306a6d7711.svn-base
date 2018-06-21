@@ -1,0 +1,7 @@
+<ivy-module version="1.0">
+    <info organisation="aspectj" module="aspectj" revision="1.8.6" status="release"/>
+	<publications>
+	    <artifact name="aspectjweaver-1.8.6" type="jar"/>
+	   
+   </publications>
+</ivy-module>

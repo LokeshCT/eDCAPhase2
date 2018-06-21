@@ -1,0 +1,102 @@
+function validate() {
+
+	var firstName = document.getElementById("Name").value;
+	document.getElementById("error").innerHTML = "";
+
+	if ((firstName == null) || (firstName == '')) {
+
+		document.getElementById("error").innerHTML = "Field is Mandatory";
+
+		return false;
+
+	}
+
+	var y = document.forms["myForm"]["p_lastName"].value;
+	document.getElementById("error_last").innerHTML = "";
+	if ((y == null) || (y == '')) {
+		document.getElementById("error_last").innerHTML = "Field is Mandatory";
+
+		return false;
+
+	}
+
+	var phone = document.forms["myForm"]["Telephone"].value;
+	document.getElementById("error_telephone").innerHTML = "";
+
+	if (phone == '' || null) {
+
+		document.getElementById("error_telephone").innerHTML = "Field is Mandatory";
+		return false;
+	}
+
+	if (isNaN(phone)) {
+		document.getElementById("error_telephone").innerHTML = "Phone Format Wrong";
+		return false;
+	}
+
+	var mobilePhone = document.forms["myForm"]["Mobile"].value;
+	document.getElementById("error_mobile").innerHTML = "";
+
+	if (isNaN(mobilePhone)) {
+		document.getElementById("error_mobile").innerHTML = "Phone Format Wrong";
+		return false;
+	}
+
+	var tphone = document.getElementById("tph").value;
+
+	document.getElementById("error_secondary_telephone").innerHTML = "";
+
+	if (isNaN(tphone)) {
+		document.getElementById("error_secondary_telephone").innerHTML = "Phone Format Wrong";
+		return false;
+	}
+
+	var mphone = document.getElementById("mph").value;
+
+	document.getElementById("error__mobile_telephone").innerHTML = "";
+
+	if (isNaN(mphone)) {
+		document.getElementById("error__mobile_telephone").innerHTML = "Phone Format Wrong";
+		return false;
+	}
+
+	if (!(document.getElementById('secondary_email').value == '' || document
+			.getElementById('secondary_email').value == 'null')) {
+
+		document.getElementById("error_secondary_mail").innerHTML = "";
+
+		var s_email = document.getElementById('secondary_email');
+		var filter = /[\s]*\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*[\s]*/;
+		// var filter="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*";
+
+		if (!filter.test(s_email.value)) {
+
+			document.getElementById("error_secondary_mail").innerHTML = "Mail Format Wrong, Use a@b.com";
+
+			// email.focus;
+			return false;
+		}
+
+	}
+
+	if (!(document.getElementById('email_V').value == '' || document
+			.getElementById('email_V').value == 'null')) {
+
+		document.getElementById("error_mail").innerHTML = "";
+
+		var s_email = document.getElementById('email_V');
+		var filter = /[\s]*\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*[\s]*/;
+		// var filter="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*";
+
+		if (!filter.test(s_email.value)) {
+
+			document.getElementById("error_mail").innerHTML = "Mail Format Wrong, Use a@b.com";
+
+			// email.focus;
+			return false;
+		}
+
+	}
+
+	window.location.href = base + "/saveSiteContactDetails";
+}

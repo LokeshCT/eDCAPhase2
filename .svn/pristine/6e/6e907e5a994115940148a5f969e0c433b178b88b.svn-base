@@ -1,0 +1,1069 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<!-- <class name="com.bt.edca.common.dto.OrderDetailsDTO" table="DDDCA_ORDER_DETAILS"
+		dynamic-insert="true" dynamic-update="true" lazy="true"> <id name="orderId"
+		type="long"> <column name="ORDER_ID"/> <generator class="sequence"> <param
+		name="sequence">DCA_ORDER_DETAILS_SEQ</param> </generator> </id> <property
+		name="productsListId" type="integer" column="PRODUCTS_LIST_ID"/> <property
+		name="salesTeam" type="integer" column="SALES_TEAM"/> <property name="progressId"
+		type="integer" column="PROGRESS_ID"/> <property name="createdDate" type="date"
+		column="CREATED_DATE"/> <property name="creatorPersonId" type="integer" column="CREATOR_PERSON_ID"/>
+		<property name="currentPageId" type="string" column="CURRENT_PAGE_ID"/> <property
+		name="orderType" type="string" column="ORDERTYPE"/> <property name="orderStatus"
+		type="string" column="ORDERSTATUS"/> <property name="orderOwner" type="integer"
+		column="ORDEROWNER"/> <property name="productId" type="integer" column="PRODUCTID"/>
+		<property name="delegatedBy" type="integer" column="DELEGATEDBY"/> <property
+		name="delegatedTo" type="integer" column="DELEGATEDTO"/> <property name="delegateReason"
+		type="string" column="DELEGATEREASON"/> <property name="cancelReason" type="string"
+		column="CANCELREASON"/> <property name="rejectReason" type="string" column="REJECTREASON"/>
+		<property name="teamId" type="integer" column="TEAMID"/> <property name="cancelBy"
+		type="integer" column="CANCELEDBY"/> <property name="rejectedBy" type="integer"
+		column="REJECTEDBY"/> <property name="approvedReason" type="string" column="APPROVEDREASON"/>
+		<property name="pass1Status" type="string" column="PASS1STATUS"/> <property
+		name="pass2Status" type="string" column="PASS2STATUS"/> <property name="rceOwner"
+		type="integer" column="RCEOWNER"/> <property name="country" type="string"
+		column="COUNTRY"/> <property name="canceledByTeam" type="integer" column="CANCELEDBYTEAM"/>
+		<property name="rejectedTeam" type="integer" column="REJECTEDBYTEAM"/> <property
+		name="delegatedToTeamId" type="integer" column="DELEGATEDTOTEAMID"/> <property
+		name="delegatedByTeamId" type="integer" column="DELEGATEDBYTEAMID"/> <property
+		name="salesTeam" type="integer" column="SALESTEAM"/> <property name="sdTeam"
+		type="integer" column="SDTEAM"/> <property name="rceTeam" type="integer"
+		column="RCETEAM"/> <property name="ortFlag" type="string" column="ORT_FLAG"/>
+		<property name="profileId" type="integer" column="PROFILE_ID"/> <property
+		name="errorEmail" type="string" column="ERROR_MAIL"/> <property name="inflightScenarioId"
+		type="string" column="INFLIGHT_SCENARIO_ID"/> <property name="differPtApproveUser"
+		type="string" column="DIFFRPT_APPROVE_USER"/> <property name="differPtApproveTeam"
+		type="string" column="DIFFRPT_APPROVE_TEAM"/> <property name="differPtApproveProfile"
+		type="string" column="DIFFRPT_APPROVE_PROFILE"/> <property name="modStatus"
+		type="string" column="MOD_STATUS"/> <property name="ifcOrderType" type="string"
+		column="IFC_ORDERTYPE"/> <property name="isSatelliteAccess" type="string"
+		column="IS_SATELLITE_ACCESS"/> <property name="accessPrimaryCR" type="string"
+		column="ACCESS_PRIMARY_CR"/> <property name="accessSecondaryCR" type="string"
+		column="ACCESS_SECONDARY_CR"/> <property name="cpePrimaryCR" type="string"
+		column="CPE_PRIMARY_CR"/> <property name="cpeSecondaryCR" type="string" column="CPE_SECONDARY_CR"/>
+		<property name="lanSwitchPrimaryCR" type="string" column="LANSWITCH_PRIMARY_CR"/>
+		<property name="lanSwitchSecondaryCR" type="string" column="LANSWITCH_SECONDARY_CR"/>
+		<property name="topologyCode" type="string" column="TOPOLOGY_CODE"/> <property
+		name="subOrderType" type="string" column="SUBORDERTYPE"/> <property name="scheduleOutage"
+		type="string" column="SCHEDULE_OUTAGE"/> <property name="supplierOrderId"
+		type="integer" column="SUPPLIER_ORDER_ID"/> <property name="unlockOrderChanged"
+		type="string" column="UNLOCK_ORDER_CHANGED"/> <property name="requestedOutageTime"
+		type="date" column="REQUESTED_OUTAGE_TIME"/> <property name="duration" type="integer"
+		column="DURATION"/> <property name="sortId" type="integer" column="SORT_ID"/>
+		<property name="isInternalOrder" type="string" column="IS_INTERNAL_ORDER"/>
+		<property name="spVerUpdateRequired" type="string" column="SPVERUPDATE_REQUIRED"/>
+		<property name="isNonStd" type="string" column="IS_NON_STD"/> <property name="configurationChangeRequired"
+		type="string" column="CONFIGURATION_CHANGE_REQUIRED"/> <property name="pkgVerUpdateRequired"
+		type="string" column="PACKAGE_VER_UPDATE_REQUIRED"/> <property name="extendedDemarcation"
+		type="string" column="EXTENDED_DEMARCATION"/> <property name="edeMarchSupplier"
+		type="string" column="EDEMARC_SUPPLIER"/> <property name="demarcPrimaryCR"
+		type="string" column="DEMARC_PRIMARY_CR"/> <property name="demarcSecondaryCR"
+		type="string" column="DEMARC_SECONDARY_CR"/> <property name="rstp" type="string"
+		column="RSTP"/> <property name="gtpCheck" type="string" column="GTP_CHECK"/>
+		<property name="supplierGFP" type="integer" column="SUPPLIER_GFP"/> <property
+		name="projectCode" type="integer" column="PROJECT_CODE"/> <property name="supplierQuote"
+		type="integer" column="SUPPLIER_QUOTE"/> <property name="quoteMatch" type="integer"
+		column="QUOTE_MATCH"/> <property name="rejectionType" type="string" column="REJECTIONTYPE"/>
+		<property name="deploymentOption" type="string" column="DEPLOYMENT_OPTION"/>
+		<property name="customizedSwitch" type="string" column="CUSTOMISEDSWITCH"/>
+		<property name="additionalRequestorId" type="integer" column="ADDITIONAL_REQUESTOR_ID"/>
+		<property name="recordOnly" type="string" column="RECORD_ONLY"/> <property
+		name="portReconfigP" type="string" column="PORT_RECONFIG_P"/> <property name="portReconfigS"
+		type="string" column="PORT_RECONFIG_S"/> </class> -->
+
+	<class name="com.bt.edca.da.domain.CustomerDetailsDomain" table="DDDCA_CUSTOMER"
+		dynamic-insert="true" dynamic-update="true" lazy="true">
+		<id name="customerId" type="long">
+			<column name="CUSTOMER_ID" />
+			<generator class="sequence">
+				<param name="sequence">DDDCA_CUSTOMER_SEQ</param>
+			</generator>
+		</id>
+
+		<property name="fullLegalCompanyName" type="string"
+			column="FULLLEGALCOMPANYNAME" />
+		<property name="customerName" type="string" column="CUSTOMERNAME" />
+		<property name="masterCustomerId" type="string" column="MASTERCUSTOMERID" />
+		<property name="orderType" type="string" column="ORDERTYPE" />
+		<property name="distributorLegalName" type="string"
+			column="DISTRIBUTORSLEGALNAME" />
+		<property name="externalSystemName" type="string" column="EXTERNALSYSTEMNAME" />
+		<property name="externalSystemReference" type="string"
+			column="EXTERNALSYSTEMREFERENCE" />
+		<property name="billingId" type="string" column="BILLINGID" />
+		<property name="contractId" type="string" column="CONTRACTID" />
+		<property name="currency" type="string" column="CURRENCY" />
+		<property name="performanceReportRequired" type="string"
+			column="PERFORMANCEREPORTSREQUIRED" />
+		<property name="customerRequiredByDate" type="date"
+			column="CUSTOMERREQUIREDBYDATE" />
+		<property name="customertype" type="string" column="CUSTOMERTYPE" />
+		<property name="orderId" type="integer" column="ORDER_ID" />
+		<property name="opportunityId" type="string" column="OPPORTUNITY_ID" />
+		<property name="customerServiceCenter" type="string"
+			column="CUSTOMER_SERVICE_CENTRE" />
+		<property name="contractTeam" type="string" column="CONTRACTTERM" />
+		<property name="minimumPeriodOfService" type="string"
+			column="MINIMUMPERIODOFSERVICE" />
+		<property name="customerCheck" type="string" column="CUSTOMERCHECK" />
+		<property name="orderFormSignDate" type="date" column="ORDERFORMSIGNDATE" />
+		<property name="discountScheme" type="string" column="DISCOUNTSCHEME" />
+		<property name="customerSystemType" type="string" column="CUSTOMERSYSTEMTYPE" />
+		<property name="oldExternalSystemName" type="string"
+			column="OLD_EXTERNALSYSTEMNAME" />
+		<property name="oldExternalSystemReference" type="string"
+			column="OLD_EXTERNALSYSTEMREFERENCE" />
+		<property name="poaReference" type="string" column="POA_REFERENCE" />
+		<property name="nonStdOrderType" type="string" column="NON_STD_ORDER_TYPE" />
+		<property name="bidTier" type="string" column="BID_TIER" />
+		<property name="nonStdConfig" type="string" column="NON_STD_CONFIG" />
+		<property name="frAtmMigrFlag" type="string" column="FR_ATM_MIGR_FLAG" />
+		<property name="frAtmMigInfo" type="string" column="FR_ATM_MIGR_INFO" />
+		<property name="interfaceSystemName" type="string"
+			column="INTERFACE_SYSTEM_NAME" />
+		<property name="losb" type="integer" column="LOSB" />
+		<property name="subOrderType" type="string" column="SUBORDERTYPE" />
+		<property name="dcaOldOrderId" type="string" column="DCA_OLD_ORDER_ID" />
+		<property name="billModify" type="string" column="BILL_MODIFY" />
+	</class>
+
+
+
+	<class name="com.bt.edca.da.domain.CPEConfigureDomain" table="DDDCA_SERVICE_INSTANCE_CPE"
+		dynamic-insert="true" dynamic-update="true" lazy="true">
+		<id name="serviceInstanceId" type="int">
+			<column name="SERVICEINSTANCEID" />
+			<generator class="sequence">
+				<param name="sequence">DDDCA_SERVICE_INSTANCE_CPE_SEQUENCE</param>
+			</generator>
+		</id>
+
+		<property name="baseRouter" type="string" column="BASEROUTER" />
+		<property name="builtinslots" type="int" column="BUILTIN_SLOTS" />
+		<property name="dartNumber" type="string" column="DART_NUMBER" />
+		<property name="license" type="string" column="LICENSE" />
+		<property name="serialNumber" type="string" column="SERIAL_NO" />
+		<property name="baseConfig" type="string" column="BASE_CONFIG" />
+		<property name="portFolioNeeded" type="string" column="EXTENDED_PORTFOLIO" />
+		<property name="cpe_firm_ware" type="string" column="CPE_FIRM_WARE" />
+		<property name="model" type="string" column="MODEL" />
+		<property name="chassis" type="string" column="CHASSIS" />
+		<property name="rps" type="string" column="RPS" />
+		<property name="powerCables" type="string" column="POWERCABLES" />
+		<property name="powerCord" type="string" column="POWERCORD" />
+		<property name="flashMemory" type="string" column="FLASHMEMORY" />
+		<property name="dRam" type="string" column="DRAM" />
+		<property name="ios" type="string" column="IOS" />
+		<property name="maintenanceOption" type="string" column="MAINTENANCEOPTION" />
+		<property name="lanType" type="string" column="LANTYPE" />
+		<property name="hwic_slots" type="string" column="HWIC_SLOTS" />
+		<property name="voiceCards" type="string" column="VOICE_CARDS" />
+		<property name="wic_slots" type="string" column="WIC_SLOTS" />
+		<property name="network_Modules" type="string" column="NETWORK_MODULES" />
+		<property name="port_Adaptors" type="string" column="PORT_ADAPTERS" />
+		<property name="rack_Mount_Kit" type="string" column="RACK_MOUNT_KIT" />
+		<property name="programName" type="string" column="PROGRAM_NAME" />
+		<property name="sharedPortAdaptors" type="string"
+			column="SHARED_PORT_ADAPTERS" />
+		<property name="cpe_Owner" type="string" column="CPE_OWNER" />
+		<property name="equipment_Financing" type="string"
+			column="EQUIPMENT_FINANCING" />
+		<property name="physical_Site_Servey" type="string"
+			column="PHYSICAL_SITE_SURVEY" />
+		<property name="partnerBidReference" type="string"
+			column="PARTNERBIDREFERENCE" />
+		<property name="cpeUsage" type="string" column="CPEUSAGE" />
+		<property name="misc_Item" type="string" column="MISC_ITEM" />
+		<property name="localization_Kit" type="string" column="LOCALIZATION_KIT" />
+		<property name="ccme_Feature" type="string" column="CCME_FEATURE" />
+		<property name="lic_cue_Licence" type="string" column="LIC_CUE_LICENCE" />
+		<property name="lic_cue_Language" type="string" column="LIC_CUE_LANGUAGE" />
+		<property name="Lic_Ipt_Cme" type="string" column="LIC_IPT_CME" />
+		<property name="Lic_Ipt_Srst" type="string" column="LIC_IPT_SRST" />
+		<property name="cpe_Quote_Ref" type="string" column="CPE_QUOTE_REF" />
+		<property name="catCode" type="string" column="CATCODE" />
+		<property name="usb" type="string" column="USB" />
+		<property name="hardDisk" type="string" column="HARD_DISC" />
+		<property name="cpeOrderingType" type="string" column="CPEORDERINGTYPE" />
+		<property name="productType" type="string" column="PRODUCT_TYPE" />
+		<property name="cpeTerm" type="string" column="CPETERM" />
+
+
+
+	</class>
+
+
+
+
+	<class name="com.bt.edca.da.domain.ConfigureCpeDomain" table="DDDCA_SITE_SERVICE_INSTANCE"
+		dynamic-insert="true" dynamic-update="true" lazy="true">
+		<id name="serviceInstanceId" type="int">
+			<column name="SERVICEINSTANCEID" />
+		</id>
+
+
+		<property name="cPE_Rack_Shelf" type="string" column="CPE_RACK_SHELF" />
+
+	</class>
+
+
+
+
+	<class name="com.bt.edca.da.domain.SitePageDomain" table="DDDCA_SITE"
+		dynamic-insert="true" dynamic-update="true" lazy="true">
+		<id name="siteId" type="long">
+			<column name="SITE_ID" />
+			<generator class="sequence">
+				<param name="sequence">DDDCA_SITE_SEQ</param>
+			</generator>
+		</id>
+
+		<property name="highestSiteSla" type="string" column="HIGHEST_SITE_SLA" />
+		<property name="resilience" type="string" column="RESILIENCE" />
+		<property name="pricing" type="string" column="PRICING" />
+		<property name="crd" type="date" column="CRD" />
+		<property name="structureCabling" type="string" column="STRUCTURE_CABLING" />
+		<property name="zone" type="string" column="ZONE" />
+		<property name="accessOption" type="string" column="ACCESS_OPTION" />
+		<property name="nativeultraset" type="string" column="NATIVEULTRASET" />
+		<property name="onvDemarcOption" type="string" column="ONV_DEMARC_OPTION" />
+		<property name="orderId" type="integer" column="ORDER_ID" />
+		<property name="lastMileAccess" type="string" column="LASTMILEACCESS" />
+		<property name="accessOptionFlag" type="string" column="ACCESS_OPTION_FLAG" />
+        <property name="fiberConnectivity" type="string" column="FIBRECONNECTIVITY" />
+        <property name="coreDiversity" type="string" column="CORE_DIVERSITY" />
+	</class>
+
+	<class name="com.bt.edca.da.domain.TableBusOrgDomain" table="TABLE_BUS_ORG"
+		dynamic-insert="true" dynamic-update="true" lazy="true">
+		<id name="objId" type="long">
+			<column name="OBJID" />
+		</id>
+
+
+		<property name="orgId" type="string" column="ORG_ID" />
+
+	</class>
+
+	<class name="com.bt.edca.da.domain.SiteClaDomain" table="DCA_CLA_SITE"
+		dynamic-insert="true" dynamic-update="true" lazy="true">
+		<id name="qSiteId" type="long">
+			<column name="Q_SITE_ID" />
+		</id>
+
+		<property name="appSiteId" type="int" column="APP_SITE_ID" />
+	</class>
+
+	<class name="com.bt.edca.da.domain.AdditionalInformationDomain"
+		table="DDDCA_ADDITIONALINFORMATION" dynamic-insert="true"
+		dynamic-update="true" lazy="true">
+		<id name="orderId" type="long">
+			<column name="order_Id" />
+		</id>
+		<property name="cotNotes" type="string" column="COT_NOTES" />
+		<property name="notes" type="string" column="NOTES" />
+		<property name="productNotes" type="string" column="PRODUCTNOTES" />
+		<property name="overrideAuthorisation" type="string"
+			column="OVERRIDE_AUTHORISATION" />
+		<property name="authorisationOverrideReason" type="string"
+			column="AUTH_OVERRIDE_REASON" />
+		<property name="reasonForChange" type="string" column="REASON_FOR_CHANGE " />
+		<property name="isexistingukcustomer" type="boolean"
+			column="ISEXISTINGUKCUSTOMER" />
+		<property name="ukFtip" type="string" column="UK_FTIP" />
+		<property name="isexistingeukasite" type="boolean" column="ISEXISTINGEUKASITE" />
+		<property name="contractFlag" type="string" column="CONTRACT_FLAG" />
+		<property name="bfgCustomerId" type="string" column="BFG_CUSTOMER_ID" />
+		<property name="bfgCustomerIdCd" type="string" column="BFG_CUSTOMER_ID_CD" />
+		<property name="bfgContractId" type="string" column="BFG_CONTRACT_ID" />
+		<property name="bfgContractIdCd" type="string" column="BFG_CONTRACT_ID_CD" />
+		<property name="bfgClassicFlag" type="boolean" column="BFG_CLASSIC_FLAG" />
+		<property name="bfgCsvId" type="string" column="BFG_CSV_ID" />
+		<property name="bfgCsvIdCd" type="string" column="BFG_CSV_ID_CD" />
+	</class>
+
+	<class name="com.bt.edca.da.domain.ProductSelectionDomain" table="DDDCA_ORDER_PRODUCT"
+		dynamic-insert="true" dynamic-update="true" lazy="true">
+		<id name="orderId" type="long">
+			<column name="order_Id" />
+		</id>
+		<property name="productName" type="string" column="PRODUCTNAME" />
+		<property name="cosModel" type="string" column="COSMODEL" />
+		<property name="cosPolicy" type="string" column="COSPOLICY" />
+		<property name="customizationLevel" type="string" column="CUSTOMIZATIONLEVEL" />
+		<property name="accessType" type="string" column="ACCESS_TYPE" />
+		<property name="serviceDelivery" type="string" column="SERVICE_DELIVERY" />
+		<property name="cpePurchase" type="string" column="CPE_PURCHASE" />
+		<property name="snmpReadOnly" type="string" column="SNMP_READONLY" />
+		<property name="changeManagement" type="string" column="CHANGE_MANAGEMENT" />
+		<property name="primaryTrapIp" type="string" column="PRIMARY_TRAPIP" />
+		<property name="primaryTrapMask" type="string" column="PRIMARY_TRAPMASK" />
+		<property name="price" type="string" column="PRICE" />
+		<property name="discount" type="string" column="DISCOUNT" />
+		<property name="connectionType" type="string" column="CONNECTION_TYPE" />
+		<property name="vpnFriendlyName" type="string" column="VPN_FRIENDLY_NAME" />
+		<property name="vpnId" type="string" column="VPN_ID" />
+		<property name="secondaryTrapIp" type="string" column="SECONDARY_TRAPIP" />
+		<property name="secondaryTrapMask" type="string" column="SECONDARY_TRAPMASK" />
+		<property name="lockFlag" type="string" column="LOCKFLAG" />
+		<property name="proactiveFaultMgmt" type="string" column="PROACTIVEFAULTMGMT" />
+		<property name="accessTypeModel" type="string" column="ACCESSTYPEMODEL" />
+		<property name="performanceReportsRequired" type="string"
+			column="PERFORMANCEREPORTSREQUIRED" />
+		<property name="voiceTrafficReportsReq" type="string"
+			column="VOICE_TRAFFIC_REPORTS_REQ" />
+		<property name="voiceVpnReq" type="string" column="VOICE_VPN_REQ" />
+		<property name="centralizedBillingRepReq" type="string"
+			column="CENTRALIZED_BILLING_REP_REQ" />
+		<property name="invoicingOption" type="string" column="INVOICING_OPTION" />
+		<property name="conferencingFacilityReq" type="string"
+			column="CONFERENCING_FACILITY_REQ" />
+		<property name="conferencingBridgeId" type="string"
+			column="CONFERENCING_BRIDGE_ID" />
+		<property name="dialPlanSiteCode" type="string" column="DIAL_PLAN_SITE_CODE" />
+		<property name="conferenceCustAccName" type="string"
+			column="CONFERENCE_CUST_ACC_NAME" />
+		<property name="conferenceAccId" type="string" column="CONFERENCE_ACC_ID" />
+		<property name="disasterRecoverNum" type="string"
+			column="DISASTER_RECOVER_NUM" />
+		<property name="additionalProductName" type="string"
+			column="ADDITIONAL_PRODUCTNAME" />
+		<property name="additionalSdmt" type="string" column="ADDITIONAL_SDMT" />
+		<property name="capacityPlanningRef" type="string"
+			column="CAPACITYPLANNINGREF" />
+		<property name="pstnRequired" type="string" column="PSTN_REQUIRED" />
+		<property name="conferencingSwitchTrunk" type="string"
+			column="CONFERENCING_SWITCH_TRUNK" />
+		<property name="confSiteLocation" type="string" column="CONF_SITE_LOCATION" />
+		<property name="onevoiceAnywhereReq" type="string"
+			column="ONEVOICE_ANYWHERE_REQ" />
+		<property name="numberOfOvaLicenses" type="string"
+			column="NUMBER_OF_OVA_LICENSES" />
+		<property name="ovaSiteLocation" type="string" column="OVA_SITE_LOCATION" />
+		<property name="ovaSiteCode" type="string" column="OVA_SITE_CODE" />
+		<property name="ovaBlockStart" type="string" column="OVA_BLOCK_START" />
+		<property name="ovaBlockSize" type="string" column="OVA_BLOCK_SIZE" />
+		<property name="gvpnExists" type="string" column="GVPN_EXISTS" />
+		<property name="ovaType" type="string" column="OVA_TYPE" />
+		<property name="evcOnly" type="string" column="EVC_ONLY" />
+		<property name="confType" type="string" column="CONF_TYPE" />
+
+	</class>
+
+	<class name="com.bt.edca.da.domain.SiteContactDetailsDomain"
+		table="DDDCA_SITE_CONTACT" dynamic-insert="true" dynamic-update="true"
+		lazy="true">
+		<id name="contactId" type="string">
+			<column name="CONTACT_ID" />
+			<generator class="sequence">
+				<param name="sequence">DDDCA_SITE_CONTACT_SEQ</param>
+			</generator>
+		</id>
+		<property name="firstName" type="string" column="FIRST_NAME" />
+		<property name="lastName" type="string" column="LAST_NAME" />
+		<property name="jobTitle" type="string" column="JOBTITLE" />
+		<property name="telephone" type="string" column="TELEPHONE" />
+		<property name="mobilePager" type="string" column="MOBILEPAGER" />
+		<property name="fax" type="string" column="FAX " />
+		<property name="email" type="string" column="EMAIL" />
+		<property name="contactType" type="string" column="CONTACTTYPE" />
+		<property name="siteLocationId" type="integer" column="SITE_LOCATION_ID" />
+	</class>
+
+
+	<class name="com.bt.edca.da.domain.CustomerContactDetailsDomain"
+		table="DDDCA_ORDER_CONTACT" dynamic-insert="true" dynamic-update="true"
+		lazy="true">
+		<id name="objId" type="integer">
+			<column name="OBJ_ID" />
+			<generator class="sequence">
+				<param name="sequence">DDDCA_ORDER_CONTACT_SEQ</param>
+			</generator>
+		</id>
+		<property name="firstName" type="string" column="FIRST_NAME" />
+		<property name="lastName" type="string" column="LAST_NAME" />
+		<property name="email" type="string" column="EMAIL" />
+		<property name="phone" type="string" column="TELEPHONE" />
+		<property name="mobilePager" type="string" column="MOBILEPAGER" />
+		<property name="jobTitle" type="string" column="JOBTITLE" />
+		<property name="fax" type="string" column="FAX" />
+		<property name="contactType" type="string" column="CONTACTTYPE" />
+		<property name="accountMgrId" type="string" column="ACCOUNTMGR_ID" />
+		<property name="salesRepEin" type="string" column="SALESREP_EIN" />
+		<property name="salesRepClassicId" type="string" column="SALESREP_CLASSICID" />
+		<property name="contactId" type="string" column="CONTACT_ID" />
+		<property name="city" type="string" column="CITY" />
+		<property name="postcode" type="string" column="POSTCODE" />
+		<property name="state" type="string" column="STATE" />
+		<property name="orderDesingerEin" type="string" column="ORDERDESIGNER_EIN" />
+		<property name="orderId" type="integer" column="ORDERID" />
+	</class>
+
+
+	<class name="com.bt.edca.da.domain.ConfigureAccessTypeDomain"
+		table="DDDCA_SERV_INST_ACCESSTYPE" dynamic-insert="true"
+		dynamic-update="true" lazy="true">
+		<id name="serviceInstanceId" type="long">
+			<column name="SERVICEINSTANCEID" />
+		</id>
+		<property name="accessType" type="string" column="ACCESSTYPE" />
+		<property name="accessCktResilenceDiversity" type="string"
+			column="ACCESSCKTRESILIENCEDIVERSITY" />
+		<property name="existingCircuit" type="string" column="EXISTINGCIRCUIT" />
+		<property name="interfaceType" type="string" column="INTERFACETYPE" />
+		<property name="physicalAccessSpeed" type="string"
+			column="PHYSICALACCESSSPEED" />
+		<property name="portSpeed" type="string" column="PORTSPEED" />
+		<property name="electricalInterface" type="string"
+			column="ELECTRICAL_INTERFACE" />
+		<property name="network" type="string" column="NETWORK" />
+		<property name="framing" type="string" column="FRAMING" />
+		<property name="lmi" type="string" column="LMI" />
+		<property name="accessBearerPhyConn" type="string"
+			column="ACCESS_BEARER_PHY_CONN" />
+		<property name="physicalConnector" type="string" column="PHYSICALCONNECTOR" />
+		<property name="frPvcClassOfService" type="string"
+			column="FRPVCCLASSOFSERICE" />
+		<property name="additionalAccess" type="string" column="ADDITIONAL_ACCESS" />
+		<property name="portType" type="string" column="PORT_TYPE" />
+		<property name="jdsuProbeOnPe" type="string" column="JDSU_PROBE_ON_PE" />
+		<property name="ethPhaseType" type="string" column="ETHPHASETYPE" />
+		<property name="btPopLocation" type="string" column="LLA_BT_POP_LOCATION" />
+		<property name="plAccessSpeed" type="string" column="LLA_ACC_BEA_CKT_SPD" />
+		<property name="plElectricalInterface" type="string"
+			column="LLA_ACC_BEA_INT_TYPE" />
+		<property name="plPhysicalConnectoreType" type="string"
+			column="LLA_ACC_BEA_CONN_TYPE" />
+		<property name="porReferenceNumber" type="string" column="LLA_POR" />
+		<property name="numOfTimeSlot" type="integer" column="NOACCESSCKT" />
+	</class>
+
+	<class name="com.bt.edca.da.domain.ConfigAccTypeBandwidthDomain"
+		table="DDDCA_SERVICE_INSTANCE_VPN" dynamic-insert="true"
+		dynamic-update="true" lazy="true">
+		<id name="serviceInstanceId" type="integer">
+			<column name="SERVICEINSTANCEID" />
+		</id>
+		<property name="aggregatedMulticastBandwidth" type="integer"
+			column="AGG_MCAST_BW" />
+	</class>
+
+	<class name="com.bt.edca.da.domain.ConfigAccTypeQrefDomain"
+		table="DDDCA_SITE_SERVICE_INSTANCE" dynamic-insert="true"
+		dynamic-update="true" lazy="true">
+		<id name="serviceInstanceId" type="int">
+			<column name="SERVICEINSTANCEID" />
+		</id>
+		<property name="qref" type="string" column="QREF" />
+		<property name="accessOffer" type="string" column="SPECIALBIDACCESSOFFER" />
+		<property name="vlanRackShelf" type="string" column="VLAN_RACK_SHELF" />
+	</class>
+
+
+	<class name="com.bt.edca.da.domain.SiteLocationDetailsDomain"
+		table="DDDCA_SITE_LOCATION" dynamic-insert="true" dynamic-update="true"
+		lazy="true">
+		<id name="siteLocationId" type="integer">
+			<column name="SITE_LOCATION_ID" />
+		</id>
+
+		<property name="siteName" type="string" column="SITENAME" />
+		<property name="country" type="string" column="COUNTRY" />
+		<property name="classicSiteId" type="string" column="INF_CLASSIC_SITEID" />
+		<property name="serClassicSiteId" type="string" column="SER_CLASSIC_SITEID" />
+		<property name="hubSpoke" type="string" column="HUBSPOKE" />
+		<property name="siteId" type="int" column="SITE_ID" />
+
+	</class>
+	<class lazy="true" dynamic-update="true" dynamic-insert="true"
+		table="DDDCA_SITE_ADDRESS" name="com.bt.edca.da.domain.SiteAddressDomain">
+		<id name="siteLocationId" type="integer">
+			<column name="SITE_LOCATION_ID" />
+		</id>
+		<property name="floor" type="string" column="FLOOR" />
+		<property name="room" type="string" column="ROOM" />
+		<property name="buildingNumber" type="string" column="BUILDING_NUMBER" />
+		<property name="addressLine1" type="string" column="ADDRESSLINE1" />
+		<property name="addressLine2" type="string" column="ADDRESSLINE2" />
+		<property name="city" type="string" column="CITY" />
+		<property name="postcode" type="string" column="POSTCODE" />
+		<property name="state" type="string" column="STATE" />
+	</class>
+
+	<class name="com.bt.edca.da.domain.ServiceInstancesDomain" table="DDDCA_SITE_SERVICE_INSTANCE"
+		dynamic-insert="true" dynamic-update="true" lazy="true">
+		<id name="serviceInstanceId" type="int">
+			<column name="SERVICEINSTANCEId" />
+		</id>
+		<property name="serviceInstance" type="string" column="SERVICEINSTANCE" />
+		<property name="totalBandWidth" type="string" column="TOTALBANDWIDTH" />
+		<property name="lanSwitch" type="string" column="LAN_SWITCH" />
+		<property name="siteLocationId" type="int" column="SITE_LOCATION_ID" />
+		<property name="serviceDemarcationOption" type="string"
+			column="SERVICE_DEMARCATION_OPTION" />
+	</class>
+
+
+	<class name="com.bt.edca.da.domain.ConfigureAccessDomain" table="DDDCA_SITE_SERVICE_INSTANCE"
+		dynamic-insert="true" dynamic-update="true" lazy="true">
+		<id name="siteLocationId" type="integer">
+			<column name="SITE_LOCATION_ID" />
+		</id>
+		<property name="serviceInstance" type="string" column="SERVICEINSTANCE" />
+		<property name="gpop" type="string" column="GPOP" />
+		<property name="apop" type="string" column="APOP" />
+		<property name="accessSupplier" type="string" column="ACCESSSUPPLIER" />
+		<property name="accessEnhancedServiceRest" type="string"
+			column="ACCESSENHANCEDSERVICEREST" />
+		<property name="accessEntryPoint" type="string" column="ACCESS_ENTRY_POINT" />
+		<property name="bgpCount" type="integer" column="BGP_COUNT" />
+		<property name="dvbpop" type="string" column="DVBPOP" />
+		<property name="portSplBidId" type="string" column="PORT_SPL_BID_ID" />
+		<property name="serviceInstanceId" type="int" column="SERVICEINSTANCEID" />
+		<property name="lanSwitch" type="string" column="LAN_SWITCH"/>
+		<property name="lanSwitchType" type="string" column="LANSWITCHTYPE"/>
+
+	</class>
+
+
+
+	<class name="com.bt.edca.da.domain.CPEOrderingDomain" table="DDDCA_CPE_ORDERING"
+		dynamic-insert="true" dynamic-update="true" lazy="true">
+		<id name="orderId" type="long">
+			<column name="order_Id" />
+		</id>
+		<property name="siteId" type="long" column="SITE_ID" />
+		<property name="programName" type="string" column="PROGRAM_NAME" />
+		<property name="dealId" type="string" column="DEAL_ID" />
+		<property name="icrlOption" type="string" column="ICRL_OPTION" />
+		<property name="icrlRequiredOverInfra" type="string" column="ICRLOVERCI" />
+		<property name="overrideCPEInstaller" type="string" column="OVERRIDESSP" />
+		<property name="partnerName" type="string" column="PARTNER_NAME " />
+		<property name="cpeInstaller" type="string" column="CPE_INSTALLER" />
+		<property name="cpeMaintainer" type="string" column="CPE_MAINTAINER" />
+		<property name="partnerBidReference" type="string" column="PARTNER_BID_REF" />
+		<property name="callOffAgentName" type="string" column="CALL_OFF_AGENT_NAME" />
+		<property name="taxId" type="string" column="TAXID" />
+		<property name="customerTopology" type="string" column="CUSTOMER_TOPOLOGY" />
+	</class>
+
+
+
+
+
+	<class name="com.bt.edca.da.domain.OtherDomain" table="DDDCA_SERVICE_INSTANCE_VPN"
+		dynamic-insert="true" dynamic-update="true" lazy="true">
+		<id name="serviceInstanceId" type="int">
+			<column name="SERVICEINSTANCEID" />
+		</id>
+		<property name="connectionName" type="string" column="CONNECTIONNAME" />
+		<property name="connectiionType" type="string" column="CONNECTIONTYPE" />
+	</class>
+
+	<class name="com.bt.edca.da.domain.OtherDevicesDomain" table="DDDCA_SITE"
+		dynamic-insert="true" dynamic-update="true" lazy="true">
+		<id name="siteId" type="int">
+			<column name="SITE_ID" />
+		</id>
+		<property name="btradianzanalytics" type="string" column="BTRADIANZANALYTICS" />
+		<property name="btradianzmonitor" type="string" column="BTRADIANZMONITOR" />
+		<property name="orderId" type="int" column="ORDER_ID" />
+	</class>
+
+
+	<class name="com.bt.edca.da.domain.ConfigureLanSwitchDomain"
+		table="DDDCA_LAN_SWITCH_CPE" dynamic-insert="true" dynamic-update="true"
+		lazy="true">
+		<id name="serviceInstanceId" type="long">
+			<column name="SERVICEINSTANCEID" />
+		</id>
+		<property name="cpeOrderingType" type="string" column="CPEORDERINGTYPE" />
+		<property name="lanSwitch" type="string" column="LANSWITCH" />
+		<property name="model" type="string" column="MODEL" />
+		<property name="chassis" type="string" column="CHASSIS" />
+		<property name="rps" type="string" column="RPS" />
+		<property name="powerCables" type="string" column="POWERCABLES" />
+		<property name="powerCord" type="string" column="POWERCORD " />
+		<property name="flashMemory" type="string" column="FLASHMEMORY" />
+		<property name="dram" type="string" column="DRAM" />
+		<property name="ios" type="string" column="IOS" />
+		<property name="demarcationExtnReqd" type="string"
+			column="DEMARCATION_EXTN_REQD" />
+		<property name="cpeOwner" type="string" column="CPE_OWNER" />
+		<property name="equipmentFinancing" type="string"
+			column="EQUIPMENT_FINANCING" />
+		<property name="maintenanceOption" type="string" column="MAINTENANCE_OPTION " />
+		<property name="workType" type="string" column="WORK_TYPE" />
+		<property name="outOfHoursWorkType" type="string"
+			column="OUT_OF_HOURS_WORK_TYPE" />
+		<property name="cpeTerm" type="string" column="CPETERM" />
+		<property name="dartNumber" type="string" column="DART_NUMBER" />
+		<property name="serialNo" type="string" column="SERIAL_NO" />
+		<property name="sharedPortAdapters" type="string"
+			column="SHARED_PORT_ADAPTERS " />
+		<property name="wicSlots" type="int" column="WIC_SLOTS" />
+		<property name="networkModules" type="int" column="NETWORK_MODULES" />
+		<property name="portAdapter" type="int" column="PORT_ADAPTERS" />
+		<property name="carrierSlots" type="int" column="CARRIER_SLOTS" />
+		<property name="processorSlots" type="int" column="PROCESSOR_SLOTS" />
+		<property name="switchingSlots" type="int" column="SWITCHING_SLOTS" />
+		<property name="isNotStdSwitch" type="string" column="IS_NONSTD_SWITCH" />
+		<property name="baseConfig" type="string" column="BASE_CONFIG" />
+		<property name="extendedPortfolio" type="char" column="EXTENDED_PORTFOLIO" />
+		<property name="cpeSeqId" type="integer" column="CPESEQID" />
+		<property name="lanUsage" type="string" column="CPEUSAGE" />
+		<property name="outOfHoursInsReqd" type="string"
+			column="OUT_OF_HOURS_INST_REQD" />
+	</class>
+	<class name="com.bt.edca.da.domain.ConfigureNetScreenDomain"
+		table="DDDCA_NETSCREEN_DEVICE" dynamic-insert="true" dynamic-update="true"
+		lazy="true">
+		<id name="serviceInstanceId" type="long">
+			<column name="SERVICEINSTANCEID" />
+		</id>
+		<property name="netScreenOrderingType" type="string"
+			column="NETSCREENORDERINGTYPE" />
+		<property name="netScreen" type="string" column="NETSCREEN" />
+		<property name="model" type="string" column="MODEL" />
+		<property name="chassis" type="string" column="CHASSIS" />
+		<property name="cpeTerm" type="string" column="CPETERM" />
+		<property name="flashMemory" type="string" column="FLASHMEMORY" />
+		<property name="dram" type="string" column="DRAM" />
+		<property name="ios" type="string" column="IOS" />
+		<property name="installationType" type="string" column="INSTALLATIONTYPE" />
+		<property name="haType" type="string" column="HATYPE" />
+		<property name="usb" type="string" column="USB" />
+		<property name="haLicense" type="string" column="HALICENSE " />
+		<property name="cpeOwner" type="string" column="CPE_OWNER" />
+		<property name="equipmentFinancing" type="string"
+			column="EQUIPMENT_FINANCING" />
+		<property name="switchPort" type="string" column="SWITCH_PORT" />
+		<property name="cpeSeqId" type="integer" column="CPESEQID" />
+		<property name="lanUsage" type="string" column="CPEUSAGE" />
+	</class>
+
+
+
+
+
+
+	<class name="com.bt.edca.da.domain.VpnPageDomain" table="DDDCA_SERVICE_INSTANCE_VPN"
+		dynamic-insert="true" dynamic-update="true" lazy="true">
+		<id name="vpnId" type="long">
+			<column name="VPNID" />
+		</id>
+		<property name="serviceInstanceId" type="long" column="SERVICEINSTANCEID" />
+		<property name="connectionName" type="string" column="CONNECTIONNAME" />
+		<property name="connectionType" type="string" column="CONNECTIONTYPE" />
+		<property name="connectionBandWidth" type="long" column="CONNECTIONBANDWIDTH" />
+		<property name="resilience" type="string" column="RESILIENCE" />
+		<property name="mcast_flag" type="string" column="MCAST_FLAG" />		
+	</class>
+
+
+	<class name="com.bt.edca.da.domain.TeamDomain" table="DDDCA_TEAM"
+		dynamic-insert="true" dynamic-update="true" lazy="true">
+		<id name="teamId" type="integer">
+			<column name="TEAMID" />
+		</id>
+		<property name="teamCategoryId" type="integer" column="TEAMCATEGORYID" />
+		<property name="teamName" type="string" column="TEAM_NAME" />
+
+	</class>
+
+
+
+	<class name="com.bt.edca.da.domain.ConfigureWicnmpaDomain" table="DDDCA_SERVICE_INSTANCE_CPE"
+		dynamic-insert="true" dynamic-update="true" lazy="true">
+		<id name="serviceInstanceId" type="int">
+			<column name="SERVICEINSTANCEID" />
+		</id>
+		<property name="hwicSlots" type="string" column="HWIC_SLOTS" />
+		<property name="wicSlots" type="string" column="WIC_SLOTS" />
+		<property name="networkModules" type="string" column="NETWORK_MODULES" />
+		<property name="portAdapters" type="string" column="PORT_ADAPTERS" />
+		<property name="sharedPort" type="string" column="SHARED_PORT_ADAPTERS" />
+		<property name="builtinSlots" type="int" column="BUILTIN_SLOTS" />
+		<property name="carrierSlots" type="int" column="Carrier_slots" />
+		<property name="processorSlots" type="int" column="Processor_slots" />
+		<property name="switchingSlots" type="int" column="Switching_slots" />
+		<property name="cpeSeqId" type="string" column="CPESEQID" />
+	</class>
+	<class name="com.bt.edca.da.domain.ConfigureWicnmpaInterfaceDomain"
+		table="DDDCA_SERV_INST_ACCESSTYPE" dynamic-insert="true"
+		dynamic-update="true" lazy="true">
+		<id name="serviceInstanceId" type="int">
+			<column name="SERVICEINSTANCEID" />
+		</id>
+		<property name="interfaceType" type="string" column="INTERFACETYPE" />
+		<property name="accessType" type="string" column="ACCESSTYPE" />
+		<property name="electricalInterface" type="string"
+			column="ELECTRICAL_INTERFACE" />
+	</class>
+	<class name="com.bt.edca.da.domain.ConfigureWicnmpaCountryDomain"
+		table="DDDCA_SITE_LOCATION" dynamic-insert="true" dynamic-update="true"
+		lazy="true">
+		<id name="siteLocationId" type="int">
+			<column name="SITE_LOCATION_ID" />
+		</id>
+
+		<property name='country' type="string" column="COUNTRY" />
+		<property name='siteId' type="int" column='SITE_ID' />
+
+		<join table="DDDCA_SITE_SERVICE_INSTANCE">
+			<key column="SITE_LOCATION_ID" />
+
+			<property name="serviceInstanceId" type="int" column="SERVICEINSTANCEID" />
+
+		</join>
+	</class>
+	<class name="com.bt.edca.da.domain.ConfigureWicnmpaEosCheckDomain"
+		table="DDDCA_SERVICE_INSTANCE_CPE" dynamic-insert="true"
+		dynamic-update="true" lazy="true">
+		<id name="serviceInstanceId" type="int">
+			<column name="SERVICEINSTANCEID" />
+		</id>
+		<property name="cpeOrderingType" type="string" column="CPEORDERINGTYPE" />
+
+	</class>
+	<class name="com.bt.edca.da.domain.VpnConnectionDomain" table="DDDCA_SERVICE_INSTANCE_VPN"
+		dynamic-insert="true" dynamic-update="true" lazy="true">
+		<id name="vpnId" type="int">
+			<column name="VPNID" />
+		</id>
+		<property name="connName" type="string" column="CONNECTIONNAME" />
+		<property name="connType" type="string" column="CONNECTIONTYPE" />
+		<property name="accessCkt" type="string" column="ACCESSCIRCUIT" />
+		<property name="connBandwidth" type="int" column="CONNECTIONBANDWIDTH" />
+		<property name="vpnFriendlyName" type="string" column="VPNFRIENDLYNAME" />
+		<property name="primaryConn" type="string" column="PRIMARYCONNECTION" />
+		<property name="secureExt" type="string" column="SECURITYEXTENSIONS" />
+		<property name="originatorCir" type="string" column="ORIGINATION_CIR" />
+		<property name="connecType" type="string" column="CONNECTIVITY_MODE" />
+		<property name="multiServ" type="string" column="MCAST_FLAG" />
+	</class>
+	<class name="com.bt.edca.da.domain.VpnServiceDomain" table="DDDCA_VPN_SERVICES"
+		dynamic-insert="true" dynamic-update="true" lazy="true">
+		<id name="vpnId" type="integer">
+			<column name="VPNID" />
+		</id>
+		<property name="vpnServiceId" type="integer" column="VPN_SERVICEID" />
+		<property name="serviceName" type="string" column="SERVICENAME" />
+		<property name="burstOption" type="string" column="BURSTOPTION" />
+		<property name="slaPackage" type="string" column="SLAPACKAGE" />
+		<property name="serviceResilience" type="string" column="SERVICERESILIENCE" />
+		<property name="coreDiversity" type="string" column="COREDIVERSITY" />
+		<property name="providerCounterParty" type="string"
+			column="PROVIDER_COUNTERPARTY" />
+		<property name="serviceType" type="string" column="SERVICETYPE" />
+		<property name="productName" type="string" column="PRODUCT_NAME" />
+		<property name="community" type="string" column="COMMUNITY" />
+		<property name="preAllocatedCoreDiversity" type="string"
+			column="PREALLOCATEDCOREDIVERSITY" />
+		<property name="bandwidth" type="integer" column="BANDWIDTH" />
+		<property name="inventoryId" type="string" column="INVENTORY_ID" />
+		<property name="cServiceElementId" type="string"
+			column="C_SERVICE_ELEMENT_ID" />
+		<property name="connectivityMode" type="string" column="CONNECTIVITY_MODE" />
+		<property name="transaction" type="string" column="TRANSACTION" />
+		<property name="toPopFlag" type="string" column="TO_POP_FLAG" />
+		<property name="lineStatus" type="string" column="LINE_STATUS" />
+		<property name="decompCoreDiversity" type="string"
+			column="DECOMPCOREDIVERSITY" />
+		<property name="layer2Bandwidth" type="integer" column="LAYER_2_BANDWIDTH" />
+		<property name="multicastFlag" type="string" column="MULTICAST_FLAG" />
+
+
+	</class>
+	<class lazy="true" dynamic-update="true" dynamic-insert="true"
+		table="DDDCA_LAN_SWITCH_CPE" name="com.bt.edca.da.domain.ConfigureLanCardsDomain">
+		<id name="serviceInstanceId" type="integer">
+			<column name="SERVICEINSTANCEID" />
+		</id>
+
+		<property name="sharedPortAdapters" type="string"
+			column="SHARED_PORT_ADAPTERS" />
+		<property name="wicSlots" type="int" column="WIC_SLOTS" />
+		<property name="networkModules" type="int" column="NETWORK_MODULES" />
+		<property name="portAdapters" type="int" column="PORT_ADAPTERS" />
+		<property name="carrirerSlots" type="int" column="CARRIER_SLOTS" />
+		<property name="processoreSlots" type="int" column="PROCESSOR_SLOTS" />
+		<property name="switchingSlots" type="int" column="SWITCHING_SLOTS" />
+		<property name="seqId" type="int" column="CPESEQID" />
+		<property name="cpeOrderingType" type="string" column="CPEORDERINGTYPE" />
+		<property name="lanSwitch" type="string" column="LANSWITCH" />
+		<join table="dddca_serv_inst_accesstype">
+			<key column="SERVICEINSTANCEID"></key>
+
+			<property name="interfaceType" type="string" column="INTERFACETYPE" />
+			<property name="electricalInterface" type="string"
+				column="ELECTRICAL_INTERFACE" />
+			<property name="noOfCircuits" type="int" column="NOACCESSCKT" />
+
+
+		</join>
+	</class>
+	<class name="com.bt.edca.da.domain.ConfigureLanCardsCountryDomain"
+		table="DDDCA_SITE_LOCATION" dynamic-insert="true" dynamic-update="true"
+		lazy="true">
+		<id name="siteLocationId" type="integer">
+			<column name="SITE_LOCATION_ID" />
+		</id>
+		<property name="country" type="string" column="COUNTRY" />
+		<property name="siteId" type="int" column="SITE_ID" />
+
+		<join table="dddca_site_service_instance ">
+			<key column="SITE_LOCATION_ID"></key>
+
+			<property name="serviceInstanceId" type="integer" column="SERVICEINSTANCEID" />
+
+		</join>
+	</class>
+
+
+	<class name="com.bt.edca.da.domain.ConfigureCardsCableDomain"
+		table="DDDCA_OTHER_DEVICES" dynamic-insert="true" dynamic-update="true"
+		lazy="true">
+		<id name="serviceInstanceId" type="int">
+			<column name="SERVICEINSTANCEID" />
+		</id>
+		<property name="cpeSequenceId" type="int" column="CPESEQID" />
+		<property name="cpeUsage" type="string" column="CPEUSAGE" />
+		<property name="deviceManufacture" type="string" column="DEVICE_MANUFACTURER" />
+		<property name="deviceOrderingType" type="string" column="DEVICEORDERINGTYPE" />
+		<property name="device" type="string" column="DEVICE" />
+		<property name="model" type="string" column="MODEL" />
+		<property name="deviceTerm" type="string" column="DEVICETERM" />
+		<property name="chassis" type="string" column="CHASSIS" />
+		<property name="maintananceOption" type="string" column="MAINTENANCEOPTION" />
+		<property name="rackMountkit" type="string" column="RACK_MOUNT_KIT" />
+		<property name="deviceOwner" type="string" column="DEVICE_OWNER" />
+		<property name="equpmentFinancing" type="string"
+			column="EQUIPMENT_FINANCING " />
+		<property name="topologyCode" type="string" column="TOPOLOGY_CODE" />
+		<property name="gateWayInterface" type="string" column="GATEWAY_INTERFACE" />
+		<property name="baseConfig" type="string" column="BASE_CONFIG" />
+		<property name="wicSlots" type="integer" column="WIC_SLOTS" />
+		<property name="retainElement" type="string" column="RETAIN_ELEMENT" />
+	</class>
+
+	<class name="com.bt.edca.da.domain.ConfigureVlanDomain" table="DDDCA_SERV_ULTRA_VLAN"
+		dynamic-insert="true" dynamic-update="true" lazy="true">
+		<id name="vlanId" type="int">
+			<column name="VLAN_ID" />
+		</id>
+
+		<property name="pafName" type="string" column="PAF_NAME" />
+		<property name="vlanType" type="string" column="VLAN_TYPE" />
+		<property name="serviceInstanceId" type="string" column="SERVICEINSTANCEId" />
+		<property name="aEndSite" type="string" column="A_END_SITE" />
+		<property name="zEndSite" type="string" column="Z_END_SITE" />
+		<property name="bandWidth" type="string" column="BANDWIDTH" />
+		<property name="broadCast" type="string" column="BROADCAST" />
+		<property name="aEndVlanId" type="string" column="A_END_VLAN_ID" />
+		<property name="zEndVlanId" type="string" column="Z_END_VLAN_ID" />
+		<property name="osiLayer" type="string" column="OSI_LAYER" />
+		<property name="providerName" type="string" column="PROVIDER_NAME" />
+		<property name="memberName" type="string" column="MEMBER_NAME" />
+		<property name="vlanIdentifier" type="string" column="VLAN_IDENTIFIER" />
+		<property name="customerHandOffMode" type="string"
+			column="CUSTOMER_HANDOFF_MODE" />
+
+	</class>
+
+	<class name="com.bt.edca.da.domain.ConfigureVlanSanDomain" table="DDDCA_SAN_NAMES"
+		dynamic-insert="true" dynamic-update="true" lazy="true">
+		<id name="sanId" type="int">
+			<column name="SAN_ID" />
+		</id>
+
+		<property name="sanName" type="string" column="SAN_NAME" />
+		<property name="sanValue" type="string" column="VALUE" />
+
+	</class>
+	<class name="com.bt.edca.da.domain.POADomain" table="DDDCA_COMMORDER_DATA"
+		dynamic-insert="true" dynamic-update="true" lazy="true">
+		<id name="poaReference" type="string">
+			<column name="POA_REF_NO" />
+		</id>
+		<!-- <property name="poaReference" type="string" column="POA_REF_NO" /> -->
+
+		<property name="orderId" type="integer" column="ORDER_ID" />
+	</class>
+	<class name="com.bt.edca.da.domain.SubOrderDomain" table="DDDCA_SUBORDER_TYPE"
+		dynamic-insert="true" dynamic-update="true" lazy="true">
+		<id name="subOrderType" type="string">
+			<column name="SUB_ORDER_TYPE" />
+		</id>
+
+
+		<property name="orderId" type="integer" column="ORDER_ID" />
+	</class>
+
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+<class name="com.bt.edca.da.domain.SiteListValuesDomain" table="DCA_LIST_VALUES"
+		dynamic-insert="true" dynamic-update="true" lazy="true">
+		<id name="listValueId" type="int">
+			<column name="LIST_VALUE_ID" />
+		</id>
+
+
+		<property name="label" type="string" column="LABEL " />
+		<property name="name" type="string" column="NAME " />
+	</class>
+
+<class name="com.bt.edca.da.domain.SiteAddressCountryDomain" table="DDDCA_SITE_LOCATION"
+		dynamic-insert="true" dynamic-update="true" lazy="true">
+		<id name="siteLocationId" type="integer">
+			<column name="SITE_LOCATION_ID" />
+		</id>
+
+		<property name="country" type="string" column="COUNTRY" />
+	</class>
+
+	<!-- Query Calls -->
+
+
+
+<query name="getSitePagePriceDetailsbyname"><![CDATA[ from SiteListValuesDomain sitePage where sitePage.name= :name]]></query>
+ <query name="getFiberConnectivityDetails"><![CDATA[SELECT DISTINCT A.fiberConnectivity FROM SitePageDomain A, SiteLocationDetailsDomain B, ConfigureAccessDomain C
+               WHERE A.siteId = B.siteId AND B.siteLocationId = C.siteLocationId AND A.orderId =:orderId
+               AND UPPER(C.lanSwitchType) = '48 PORTS'
+               AND UPPER(C.lanSwitch) = 'YES']]></query>
+
+
+    <query name="getLanswitchDetails"><![CDATA[SELECT c.lanSwitch FROM SitePageDomain a, SiteLocationDetailsDomain b, ConfigureAccessDomain c WHERE a.siteId = b.siteId AND b.siteLocationId = c.siteLocationId AND a.siteId =:siteId]]></query>
+
+	<query name="getCustomerDetailsListByOrderId"><![CDATA[ from CustomerDetailsDomain customer where customer.orderId = :orderId and customer.customertype = :customertype ]]></query>
+
+	<query name="getPoaRefNO"><![CDATA[  SELECT DISTINCT from POADomain poa where  poa.orderId=:orderId ]]></query>
+	<query name="getSubOrderValue"><![CDATA[  from SubOrderDomain sub where  sub.orderId=:orderId ]]></query>
+
+	<query name="getSitePageListByOrderId"><![CDATA[ from SitePageDomain sitepage where sitepage.orderId = :orderId ]]></query>
+
+	<query name="getSpecialBidReference"><![CDATA[ SELECT DISTINCT tbus.objId FROM CustomerDetailsDomain cust,TableBusOrgDomain tbus WHERE TRIM(cust.masterCustomerId) = TRIM(tbus.orgId) AND cust.orderId = :orderId ]]></query>
+
+	<query name="getDcaReferenceId"><![CDATA[ SELECT MIN(sitecla.qSiteId)  FROM SiteClaDomain sitecla, SitePageDomain sitepage WHERE sitepage.orderId = :orderId AND sitecla.appSiteId = sitepage.siteId ]]></query>
+
+	<query name="getAggregatedMulticastBandwidth"><![CDATA[SELECT SUM(NVL(DSIV.AGG_MCAST_BW, 2)) FROM  ConfigAccTypeBandwidthDomain DSIV WHERE  DSIV.serviceInstanceId = :serviceInstanceId]]></query>
+
+	<query name="getAdditionalInformationListByOrderId"><![CDATA[ from AdditionalInformationDomain additional where additional.orderId = :orderId  ]]></query>
+
+	<query name="getProductSelectionListByOrderId"><![CDATA[ from ProductSelectionDomain product where product.orderId = :orderId  ]]></query>
+
+	<query name="getCPEConfigureByServiceInstanceId"><![CDATA[ from CPEConfigureDomain cpeConfigure where cpeConfigure.serviceInstanceId = :serviceInstanceId]]></query>
+
+
+	<query name="getConfigureCpeDetails"><![CDATA[from ConfigureCpeDomain cpeConfigure where cpeConfigure.serviceInstanceId = :serviceInstanceId]]></query>
+
+
+	<query name="getSiteContactDetailsListBySiteLocationId"><![CDATA[ from SiteContactDetailsDomain sitecontact where sitecontact.siteLocationId = :siteLocationId and sitecontact.contactType in (:contactType)
+	]]></query>
+
+	<query name="getCustomerContactDetailsListByOrderId"><![CDATA[ from CustomerContactDetailsDomain contact where contact.orderId = :orderId and contact.contactType in (:contactType) ]]></query>
+
+	<query name="getConfigureAccessTypeListByServiceInstanceId"><![CDATA[ from ConfigureAccessTypeDomain configureAccessType where configureAccessType.serviceInstanceId = :serviceInstanceId]]></query>
+
+	<query name="getQrefValueByServiceInstanceId"><![CDATA[ from ConfigAccTypeQrefDomain qref where qref.serviceInstanceId = :serviceInstanceId]]></query>
+	<query name="getSiteLocationDetailsListBySiteId"><![CDATA[from SiteLocationDetailsDomain siteLocation where siteLocation.siteId=:siteId ]]></query>
+
+
+	<query name="getConfigureAccessDetails"><![CDATA[ SELECT config.serviceInstance,config.gpop, config.dvbpop, config.apop, config.accessSupplier, config.accessEnhancedServiceRest,
+						config.accessEntryPoint, config.bgpCount,config.portSplBidId,config.siteLocationId
+						FROM ConfigureAccessDomain config, SiteLocationDetailsDomain siteLocation
+                      	 WHERE config.siteLocationId = siteLocation.siteLocationId AND siteLocation.siteId = :siteId AND config.serviceInstance = :serviceInstance ]]></query>
+
+
+	<query name="getResilienceByOrderId"><![CDATA[ Select count(site.resilience) from SitePageDomain site where site.orderId = :orderId and site.resilience = :resilience ]]></query>
+
+	<query name="getOrderTypeByOrderId"><![CDATA[ select upper(customer.orderType) from CustomerDetailsDomain customer where customer.orderId = :orderId ]]></query>
+
+	<!-- <query name="subquery1"><![CDATA[select min(sc.qSiteId) as Q_SITE_ID,sc.appSiteId
+		FROM SiteClaDomain sc group by sc.appSiteId ]]></query> -->
+
+	<!-- <query name="getSitesDetails1"><![CDATA[ select site.siteId, (min(sc.qSiteId)
+		Q_SITE_ID ,sc.appSiteId FROM SiteClaDomain sc group by sc.appSiteId),site.resilience,site.pricing,Conf.serviceInstance
+		FROM ConfigureAccessDomain Conf,SiteLocationDetailsDomain Loc, SitePageDomain
+		site, WHERE site.siteId=sc.appSiteId(+) AND site.siteId = Loc.siteId AND
+		Loc.siteLocationId=Conf.siteLocationId AND site.orderId =:orderId ORDER BY
+		Conf.serviceInstance asc ]]></query> -->
+
+	<query name="getSiteLocationDetailsListBySiteLocationId"><![CDATA[from SiteLocationDetailsDomain siteLocation where siteLocation.siteLocationId=:siteLocationId ]]></query>
+
+	<query name="getSiteAdressListBySiteLocationId"><![CDATA[from SiteAddressDomain siteAddress where siteAddress.siteLocationId=:siteLocationId]]></query>
+
+
+	<query name="getServiceInstancesbysiteLocationId"><![CDATA[from ServiceInstancesDomain service where service.siteLocationId=:siteLocationId order by serviceInstanceId ]]></query>
+
+	<query name="getVpnByServiceInstanceId"><![CDATA[from OtherDomain vpn
+		where vpn.serviceInstanceId=:serviceInstanceId]]></query>
+	<query name="getServicebyServiceInstanceId"><![CDATA[from
+		ServiceInstancesDomain service where service.serviceInstanceId=:serviceInstanceId]]></query>
+
+
+	<query name="getCPEOrderingDetailsByOrderId"><![CDATA[ from CPEOrderingDomain cpeOrdering where cpeOrdering.orderId = :orderId ]]></query>
+
+	<query name="getCPELanSwitchByServiceInstanceAndCpeSeqId"><![CDATA[ from ConfigureLanSwitchDomain configureLanSwitch where configureLanSwitch.serviceInstanceId = :serviceInstanceId and configureLanSwitch.cpeSeqId =:cpeSeqId  ]]></query>
+
+	<query name="getCPENetScreenByServiceInstanceAndCpeSeqId"><![CDATA[ from ConfigureNetScreenDomain configureNetScreen where configureNetScreen.serviceInstanceId = :serviceInstanceId and configureNetScreen.cpeSeqId =:cpeSeqId  ]]></query>
+
+
+	<query name="getVpnPageByServiceInstanceId"><![CDATA[ from VpnPageDomain vpnPage where vpnPage.serviceInstanceId = :serviceInstanceId ]]></query>
+
+   <query name="getConfigureOtherDevicesbySiteIdandorderId"><![CDATA[ from OtherDevicesDomain site where site.siteId = :siteId and site.orderId = :orderId ]]></query>
+   <query name="getConfigureCardCable"><![CDATA[Select count(*) from ConfigureCardsCableDomain cable where cable.serviceInstanceId = :serviceInstanceId]]></query>
+
+
+	<query name="getCardSlotList"><![CDATA[from ConfigureWicnmpaDomain wicnmpa where wicnmpa.serviceInstanceId = :serviceInstanceId and wicnmpa.cpeSeqId = :cpeSeqId]]></query>
+
+	<query name="getInterfaceByServiceInstanceId"><![CDATA[ FROM ConfigureWicnmpaInterfaceDomain coninterface where coninterface.serviceInstanceId= :serviceInstanceId]]></query>
+
+	<query name="getSiteIdCountryByServiceInstanceId"><![CDATA[FROM ConfigureWicnmpaCountryDomain a where serviceInstanceId= :serviceInstanceId]]></query>
+
+	<query name="getEosByServiceInstanceId"><![CDATA[ from ConfigureWicnmpaEosCheckDomain eos where eos.serviceInstanceId= :serviceInstanceId ]]></query>
+
+	<query name="getVpnConnectionListByVpnId"><![CDATA[ from VpnConnectionDomain vpnc where vpnc.vpnId= :vpnId ]]></query>
+
+	<query name="getVpnServiceListByVpnServiceId"><![CDATA[ from VpnServiceDomain vpns where vpns.vpnServiceId= :vpnServiceId ]]></query>
+
+	<query name="getLanCardsDetails"><![CDATA[  FROM ConfigureLanCardsDomain cardsDetails WHERE cardsDetails.serviceInstanceId = :serviceInstanceId AND cardsDetails.seqId = :seqId ]]></query>
+
+	<query name="getLanCableDetails"><![CDATA[ FROM ConfigureLanCardsDomain cable where cable.serviceInstanceId=:serviceInstanceId and cable.seqId=:seqId ]]></query>
+
+	<query name="getSiteDetails"><![CDATA[ FROM ConfigureLanCardsCountryDomain site where site.serviceInstanceId=:serviceInstanceId]]></query>
+
+	<query name="getConfigureVlanUltraDetails"><![CDATA[ FROM ConfigureVlanDomain vlan where vlan.serviceInstanceId=:serviceInstanceId]]></query>
+	<query name="getDistinctLanSwitch"><![CDATA[ FROM ConfigureLanSwitchDomain vlan where vlan.serviceInstanceId=:serviceInstanceId]]></query>
+	<query name="getUltraOrderDetails"><![CDATA[ FROM SitePageDomain ultra where ultra.siteId=:siteId]]></query>
+	<query name="getServiceInstance"><![CDATA[ FROM ConfigureAccessDomain ultra where ultra.serviceInstanceId=:serviceInstanceId]]></query>
+	<query name="getSanName"><![CDATA[SELECT distinct san.sanName,san.sanId from ConfigureVlanSanDomain san,ConfigureVlanDomain vlan
+    															where vlan.vlanId=san.sanId and vlan.serviceInstanceId=:serviceInstanceId]]></query>
+	<query name="getSanValue"><![CDATA[SELECT  value.sanValue from ConfigureVlanSanDomain value,ConfigureVlanDomain vlan
+    															where value.sanId=:sanId and vlan.vlanId=:vlanId and value.sanName=:sanName]]></query>
+
+	<query name="getTeamCategoryId"><![CDATA[Select team.teamCategoryId from TeamDomain team where team.teamId = :teamId]]>
+	</query>
+
+	<query name="getVPNServiceId"><![CDATA[Select vpn.vpnServiceId from VpnServiceDomain vpn where vpn.vpnId = :vpnID]]>
+	</query>
+
+	<query name="getVPNServicesDetails"><![CDATA[Select vpn.vpnServiceId,vpn.burstOption,vpn.slaPackage,vpn.serviceResilience,vpn.coreDiversity,vpn.preAllocatedCoreDiversity,vpn.providerCounterParty,vpn.serviceType,vpn.vpnId,
+    vpn.community,vpn.productName from VpnServiceDomain vpn where vpn.vpnId = :vpnID]]></query>
+   
+   <query name="getCountryBySiteLocationId"><![CDATA[from SiteAddressCountryDomain siteAddress where siteAddress.siteLocationId=:siteLocationId]]></query>
+
+</hibernate-mapping>

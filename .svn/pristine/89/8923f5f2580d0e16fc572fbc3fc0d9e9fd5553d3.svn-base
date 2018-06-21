@@ -1,0 +1,6 @@
+<ivy-module version="1.0">
+    <info organisation="jstl" module="jstl" revision="1.2" status="release"/>
+	<publications>
+	   <artifact name="jstl-1.2" type="jar"/>
+   </publications>
+</ivy-module>

@@ -1,0 +1,30 @@
+###############################################
+# Build Properties File
+# 
+###############################################
+
+cotplus.jdk.home=${env.JAVA_HOME}
+cotplus.wls.home=${env.WLS_HOME}
+warupload.jdk.home=C:/bea/jdk150_04
+
+cotplus.env=workstation
+#derived from above, no need to edit:
+environment.property.file=${project.config.dir}/${cotplus.env}.env
+
+# probably needs to change based on env....
+cotplus.classpath=${env.CLASSPATH}:${env.WLS_HOME}/server/lib/weblogic.jar
+
+
+# Path to ClamAV (virus scanner) "clamscan" binary
+#cotplus.av=/usr/local/bin/clamscan
+
+
+weblogic.jar.path=${cotplus.wls.home}/server/lib/weblogic.jar
+cotplus.build.paths=${edca.build.dir}/edca-utilities/build/classes
+component.classpath=./build/classes;./componentdescriptors:${frameworks.dir}/emw-logging-framework/emw-logging-framework-3_2_5_0/jars/Logging.jar:./build/framework:${weblogic.jar.path}:${cotplus.build.paths}
+test.component.classpath=./build/classes;./componentdescriptors:${frameworks.dir}/emw-logging-framework/emw-logging-framework-3_2_5_0/jars/Logging.jar:./build/framework
+
+webapp.classpath=./build/classes;./componentdescriptors:${frameworks.dir}/emw-logging-framework/emw-logging-framework-3_2_5_0/jars/Logging.jar:./build/framework:${weblogic.jar.path}:${cotplus.build.paths}
+webapp.name=web
+webapp.version=1.0
+

@@ -1,0 +1,84 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- Jsp page having common attribute for primary 
+     and secondary site contact details and passing this jsp 
+       page to siteContactDetails.jsp page for including this jsp page. -->
+<html>
+<head>
+
+
+<script type="text/javascript"
+	src="<c:url value="/assets/js/custom/siteContactDetails.js" />"></script>
+</head>
+<body>
+
+<table class="bordered">
+
+	<thead>
+		<tr>
+			<th>CONTACT ID</th>
+			<th>FIRST NAME</th>
+			<th>LAST NAME</th>
+			<th>JOB TITLE</th>
+			<th>EMAIL</th>
+			<th>PHONE</th>
+			<th>MOBILE PHONE</th>
+		</tr>
+	</thead>
+	<tbody>
+<c:forEach var="siteContactDetailsDTO" items="${id}">
+	<tr>
+		<!--<td><input path="contactId" type="text"
+			value="<c:out value="${siteContactDetailsDTO.contactId}" />" /></td>
+			-->
+			
+		<td><input path="contactId" type="text" name="p_Contact_Id" 
+			value="${siteContactDetailsDTO.contactId} " /></td>
+		<!--<td><input path="firstName" type="text" name="Name" id="firstName"
+			value="<c:out value="${siteContactDetailsDTO.firstName}" />" /></td>
+			-->
+		<td><input path="firstName" type="text" id="Name" name="p_FirstName"
+			onchange="validate()" id="firstName"
+			value="${siteContactDetailsDTO.firstName}"
+			style="background-color: cyan" />
+		<h4><font color="red"><span id="error"> </span></font></h4>
+		</td>
+		<td><input path="lastName" type="text" name="p_lastName"
+			onchange="validate()" id="lastName"
+			value="${siteContactDetailsDTO.lastName}"
+			style="background-color: cyan" />
+		<h4><font color="red"><span id="error_last"></span></font></h4>
+		</td>
+		<td><input path="jobTitle" type="text" name="p_JobTitle"
+			value="${siteContactDetailsDTO.jobTitle}" /></td>
+		<td><input path="email" type="email" name="Email" id="email_V"
+			value="${siteContactDetailsDTO.email}" onchange="validate()" />
+		<h4><font color="red"><span id="error_mail"></span></font></h4>
+		</td>
+
+		</td>
+		<td><input path="telephone" type="text"
+			value="${siteContactDetailsDTO.telephone}" name="Telephone"
+			onchange="validate()" style="background-color: cyan" />
+
+		<h4><font color="red"><span id="error_telephone"></span></font></h4>
+
+		</td>
+		<td><input path="mobilePager" type="text" name="Mobile"
+			onchange="validate()"
+			value="${siteContactDetailsDTO.mobilePager}" />
+
+		<h4><font color="red"><span id="error_mobile"></span></font></h4>
+		</td>
+
+
+	</tr>
+
+</c:forEach>
+</tbody>
+</table>
+
+</body>
+</html>

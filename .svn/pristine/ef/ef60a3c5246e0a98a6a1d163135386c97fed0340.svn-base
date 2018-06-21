@@ -1,0 +1,50 @@
+package com.bt.edca.dao;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+/**
+ * Description : Interface for getting the database connection .
+ * 
+ * @author Rohit .
+ */
+public interface SiteContactDetailsDao {
+  /**
+   * Static variable .
+   */
+  String GET_SITE_CONTACT_DETAILS_LIST_BY_SITE_LOCATION_ID = 
+      "getSiteContactDetailsListBySiteLocationId";
+
+  /**
+   * decalaration of the constant. 
+   * Constant for PrimarySiteContactDetails.
+   * constant declared to call procedure to save the values into DB
+   */
+  String SAVE_PRIMARY_SITE_CONTACT_DETAILS = "{"
+      + "call DDDCA_SPRING_COMM_CONTACT.DDDCA_ADDUPD_SITE_CONTACT(?,?,?,?,?,?,?,?,?,?)}";
+
+  /**
+   * decalaration of the constant. Constant for SecondarySiteContactDetails.
+   * constant declared to call procedure to save the values into DB
+   */
+  String SAVE_SECONDARY_SITE_CONTACT_DETAILS = "{"
+      + "call DDDCA_SPRING_COMM_CONTACT.DDDCA_ADDUPD_SITE_CONTACT(?,?,?,?,?,?,?,?,?,?)}";
+
+  /**
+   * Description : Method for getting the values from the database .
+   * 
+   * @param siteLocationId
+   *          .
+   * @return siteContactDetailsList .
+   */
+  public List getSiteContactDetails(String siteLocationId, String[] siteContactTypeArray);
+
+  /**
+   * method declaration to save siteContactDetails in DB.
+   * 
+   * @param siteLocationId.
+   * @param request.
+   */
+  public void saveSiteContactDetails(String siteLocationId, HttpServletRequest request);
+}

@@ -1,0 +1,6 @@
+<ivy-module version="1.0">
+    <info organisation="junit" module="junit" revision="4.11" status="release"/>
+	<publications>
+	    <artifact name="junit-4.11" type="jar"/>
+   </publications>
+</ivy-module>

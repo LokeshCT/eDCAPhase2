@@ -1,0 +1,37 @@
+ivy.project.dir=${edca.build.dir}
+# = Construction/cotplus-whatever
+
+#ivy.lib.dir=${ivy.project.dir}/build/framework
+ivy.build.dir=${ivy.project.dir}/${project.name}
+# = Construction/../Build/cotplus-whatever/
+
+
+ivy.lib.dir=${edca.build.dir}/${project.name}/framework
+# = Construction/../Build/cotplus-whatever/build/framework
+#ivy.lib.dir=${cotplus.war.build.dir}/WEB-INF/lib
+#MAYBE 
+
+
+#ivy.build.artifacts.dir=${ivy.project.dir}/build/artifacts
+ivy.build.artifacts.dir=${ivy.build.dir}/artifacts
+# = Construction/../Build/cotplus-whatever/build/artifacts
+
+#ivy.distrib.dir=${ivy.project.dir}/build/framework/lib
+ivy.distrib.dir=${ivy.build.dir}/framework/lib
+# = Construction/../Build/cotplus-whatever/build/framework/lib
+
+ivy.configurations=*
+ivy.resolver.default.check.modified=false
+ivy.status=integration
+ivy.dep.file=${component.name}/ivy.xml
+ivy.conf.file=ivyconf.xml
+
+ivy.retrieve.pattern=${ivy.lib.dir}/[type]s/[artifact].[ext]
+# FROM?: Build/cotplus-whatever/build/framework/jars/thing.jar
+ivy.deliver.ivy.pattern=${ivy.distrib.dir}/[artifact].[ext]
+#   TO?: Build/cotplus-whatever/build/framework/lib/thing.jar
+
+ivy.artifact.pattern.one=[module]/[module]-[revision]/[type]s/[artifact].[ext]
+ivy.artifact.pattern.two=[module]/[module]-[revision]/[type]s/[artifact]-[revision].[ext]
+ivy.xml.pattern.one=[module]/[module]-[revision]/[module]-[revision]_ivy.xml
+ivy.xml.pattern.two=[module]/[module]-[revision]/ivy.xml

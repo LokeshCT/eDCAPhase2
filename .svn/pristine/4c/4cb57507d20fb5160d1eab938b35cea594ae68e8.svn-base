@@ -1,0 +1,13 @@
+###################################################################
+# Project Name
+###################################################################
+project.name=edca-web
+project.template.name=tpl_component
+
+###################################################################
+# component-specific properties
+###################################################################
+component.name=edca-web
+component.version=0.1
+component.ext=jar
+

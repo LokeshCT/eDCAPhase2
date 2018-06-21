@@ -1,0 +1,441 @@
+<?xm version="1.0" encoding="UTF-8"?>
+<!--
+	 Master Build Script
+	 Author: Jeno Jeyakumar Nathaniel
+-->
+
+<project name="edca" default="master" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+
+	<!-- Load property files (default settings plus specific configuration) -->
+	<property file="${basedir}/build.common.properties" />
+	<property file="${basedir}/build.env.properties" />
+
+	<!-- ============ -->
+	<!-- Main Targets -->
+	<!-- ============ -->
+
+	<!-- Does everything, from clean to test 
+		Need enhancement to support :clean, setup, enable-pmd, buildandjar, war, post-build, remote-deploy, test
+		-->
+	<target name="master" description="Master build target." depends="clean,setup,buildandjar,war" />
+	<target name="test" description="Master build target." depends="clean,setup,buildandjar,war,junit,pmd,findbugs,checkstyle" />
+
+
+	<!-- =========== -->
+	<!-- Sub-Targets -->
+	<!-- =========== -->
+
+	<target name="setup" description="Performs initial build configuration." depends="run-diagnostics, setup-directories" />
+
+	<target name="buildandjar" description="compile sub-projects and create JAR files for each in turn" depends="build-utilities,spring-copy,jar-utilities,build-da,spring-copy,jar-da,build-services,spring-copy,jar-services,build-web,spring-copy,jar-web" />
+
+	<!-- ============= -->
+	<!-- Clean Targets -->
+	<!-- ============= -->
+
+	<target name="clean" description="Cleans up build artifacts.">
+		<echo message="Cleaning artifacts..." />
+		<delete dir="${edca.build.dir}" />
+		<echo message="Cleaning Ivy Cache..." />
+		<ivy:cleancache />
+	</target>
+
+	<!-- ============= -->
+	<!-- Setup Targets -->
+	<!-- ============= -->
+
+	<target name="run-diagnostics" description="Runs ant's internal diagnostics task">
+		<diagnostics />
+	</target>
+
+	<target name="setup-directories" description="Sets up necessary directories.">
+		<mkdir dir="${edca.dist.dir}" />
+	</target>
+
+	<!-- ============= -->
+	<!-- Build Targets -->
+	<!-- ============= -->
+
+	<target name="build-utilities" description="Builds utilities module.">
+		<echo message="Building utilities ..." />
+		<antcall inheritall="true" inheritrefs="true" target="ivy">
+			<param file="${basedir}/edca-utilities/component.properties" />
+		</antcall>
+
+		<antcall inheritall="true" inheritrefs="true" target="compile">
+			<param file="${basedir}/edca-utilities/component.properties" />
+		</antcall>
+	</target>
+
+	<target name="build-da" description="Builds da module.">
+		<echo message="Building da ..." />
+		<antcall inheritall="true" inheritrefs="true" target="ivy">
+			<param file="${basedir}/edca-da/component.properties" />
+		</antcall>
+
+		<antcall inheritall="true" inheritrefs="true" target="compile">
+			<param file="${basedir}/edca-da/component.properties" />
+		</antcall>
+	</target>
+
+	<target name="build-services" description="Builds services module.">
+		<echo message="Building services ..." />
+		<antcall inheritall="true" inheritrefs="true" target="ivy">
+			<param file="${basedir}/edca-services/component.properties" />
+		</antcall>
+
+		<antcall inheritall="true" inheritrefs="true" target="compile">
+			<param file="${basedir}/edca-services/component.properties" />
+		</antcall>
+	</target>
+
+	<target name="build-web" description="Builds web module.">
+		<echo message="Building services ..." />
+		<antcall inheritall="true" inheritrefs="true" target="ivy">
+			<param file="${basedir}/edca-web/component.properties" />
+		</antcall>
+
+		<antcall inheritall="true" inheritrefs="true" target="compile">
+			<param file="${basedir}/edca-web/component.properties" />
+		</antcall>
+	</target>
+
+
+	<!--  ============= -->
+	<!-- Temp: Copy Beans -->
+	<!--  ============= -->
+
+	<target name="spring-copy" description="Copies the spring beans">
+
+	</target>
+
+	<!-- ============= -->
+	<!--  Ivy Targets  -->
+	<!-- ============= -->
+
+	<target name="ivy" description="Configure project dependencies">
+		<echo message="Building dependencies for ${project.name} ..." />
+		<property name="ivy.dep.file" value="${project.name}/ivy.xml" />
+		<property name="ivy.report.todir" value="${edca.ivy.root}/${project.name}" />
+		<echo message="Creating directory ${ivy.report.todir}" />
+		<mkdir dir="${ivy.report.todir}" />
+		<!-- Configure Ivy based on local configuration file. -->
+		<ivy:configure file="${basedir}/ivyconf.xml" override="true" />
+		<!-- Retrieve dependencies as necessary. -->
+		<ivy:retrieve />
+		<!-- Create a dependency report. -->
+		<ivy:report />
+	</target>
+
+
+	<!-- =================== -->
+	<!-- Compilation Targets -->
+	<!-- =================== -->
+
+	<target name="compile" description="Compiles the main module code.">
+		<echo message="Compiling ..." />
+		<property name="${project.name}.axis" value="${component.axis.client}" />
+		<antcall inheritall="true" inheritrefs="true" target="compile-code">
+			<param name="edca.component.dir" value="${edca.build.dir}/${project.name}" />
+			<param name="edca.component.src.dir" value="${edca.build.dir}/${project.name}/src" />
+			<param name="edca.compile.dir" value="${edca.build.dir}/${project.name}/classes" />
+			<param name="edca.component.framework.dir" value="${edca.build.dir}/${project.name}/framework" />
+			<param name="edca.component.generated.src.dir" value="${edca.build.dir}/${project.name}/generated-src" />
+			<param name="code.source.path" value="${basedir}/../java-src/${project.name}" />
+		</antcall>
+	</target>
+
+	<target name="compile-code" description="General-purpose code builder.">
+		<mkdir dir="${edca.compile.dir}" />
+		<echo message="Compiling ${code.source.path} to ${edca.compile.dir} ..." />
+		<echo message="CLASSPATH = ${component.classpath}" />
+		<javac encoding="iso-8859-1" target="1.6" source="1.6" bootclasspath="${warupload.jdk.home}/jre/lib/rt.jar" destdir="${edca.compile.dir}" includeantruntime="true" debug="${edca.component.debug}" deprecation="${edca.component.deprecation}" failonerror="${edca.compile.fail.on.error}">
+			<classpath>
+				<pathelement path="${component.classpath}" />
+				<fileset dir="${edca.component.framework.dir}/jars">
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+			<src path="${code.source.path}" />
+			<include name="**/*.java" />
+		</javac>
+	</target>
+
+	<!-- ================= -->
+	<!-- Packaging Targets -->
+	<!-- ================= -->
+
+	<target name="jar-utilities" description="Packages edca-utilities into JAR file.">
+		<antcall inheritall="true" inheritrefs="true" target="jar-package">
+			<param file="${basedir}/edca-utilities/component.properties" />
+		</antcall>
+	</target>
+
+	<target name="jar-da" description="Packages edca-da into JAR file.">
+		<antcall inheritall="true" inheritrefs="true" target="jar-package">
+			<param file="${basedir}/edca-da/component.properties" />
+		</antcall>
+	</target>
+
+	<target name="jar-services" description="Packages edca-services into JAR file.">
+		<antcall inheritall="true" inheritrefs="true" target="jar-package">
+			<param file="${basedir}/edca-services/component.properties" />
+		</antcall>
+	</target>
+
+	<target name="jar-web" description="Packages edca-web into JAR file.">
+		<antcall inheritall="true" inheritrefs="true" target="jar-package">
+			<param file="${basedir}/edca-web/component.properties" />
+		</antcall>
+	</target>
+
+	<target name="da-hibernate" description="Performs Hibernate Copy.">
+		<mkdir dir="${edca.root}/../Dependancies/bt-repository/edca-da/edca-da-0.1/hibernate" />
+		<copy todir="${edca.root}/../Dependancies/bt-repository/edca-da/edca-da-0.1/hibernate" preservelastmodified="true" failonerror="false">
+			<fileset dir="${edca.build.dir}/../configs/edca-da/hibernate" includes="**/*.xml" />
+		</copy>
+	</target>
+
+	<target name="jar-package" description="Performs JAR process.">
+
+		<mkdir dir="${edca.build.dir}/${project.name}/${project.name}-${component.version}/jars/" />
+
+		<mkdir dir="${edca.root}/../Dependancies/bt-repository/${project.name}/${project.name}-${component.version}/spring-beans" />
+
+		<echo message="Copying project jars:   ${edca.build.dir}/${project.name}/${project.name}-${component.version}/spring-beans" />
+		<echo message="						to ${edca.root}/../Dependancies/bt-repository/${project.name}/${project.name}-${component.version}/spring-beans" />
+		<copy todir="${edca.root}/../Dependancies/bt-repository/${project.name}/${project.name}-${component.version}/spring-beans" overwrite="true" preservelastmodified="true" verbose="true">
+			<fileset dir="${edca.build.dir}/../configs/${project.name}/spring-beans" includes="**/*.xml" />
+		</copy>
+
+		<copy todir="${edca.build.dir}/${project.name}/${project.name}-${component.version}/properties" preservelastmodified="true" failonerror="false">
+			<fileset dir="${edca.root}/Construction/${project.name}/componentdescriptors/properties" includes="**/**" />
+		</copy>
+
+		<echo message="Creating ${project.name}.jar" />
+		<jar jarfile="${edca.build.dir}/${project.name}/${project.name}-${component.version}/jars/${project.name}-${component.version}.jar">
+			<fileset dir="${edca.build.dir}/${project.name}/classes" includes="**/**" />
+		</jar>
+
+		<echo message="Copying dependencies: 	${basedir}/${project.name}/ivy.xml" />
+		<echo message="						 to ${edca.build.dir}/${project.name}/${project.name}-${component.version}/" />
+		<copy todir="${edca.build.dir}/${project.name}/${project.name}-${component.version}/" preservelastmodified="true" failonerror="false" verbose="true">
+			<fileset file="${basedir}/${project.name}/ivy.xml" />
+		</copy>
+
+		<!--<echo message="Copying componentdescriptors:	${edca.root}/Construction/${project.name}/componentdescriptors "/>
+			<echo message="								 to ${edca.dist.dir}/${project.name}/${project.name}-${component.version}/"/>
+			<copy todir="${edca.dist.dir}/${project.name}/${project.name}-${component.version}/" 
+				preservelastmodified="true" 
+				failonerror="false"
+				includeEmptyDirs="false"
+				verbose="true">
+				<fileset dir="${edca.root}/Construction/${project.name}/componentdescriptors" includes="**/**" /> 
+			</copy>
+			-->
+		<mkdir dir="${edca.root}/../Dependancies/bt-repository/${project.name}/${project.name}-${component.version}/jars" />
+
+		<echo message="Copying project jars:   ${edca.build.dir}/${project.name}/${project.name}-${component.version}" />
+		<echo message="						to ${edca.root}/../Dependancies/bt-repository/${project.name}/${project.name}-${component.version}" />
+		<copy todir="${edca.root}/../Dependancies/bt-repository/${project.name}/${project.name}-${component.version}" overwrite="true" preservelastmodified="true" verbose="true">
+			<fileset dir="${edca.build.dir}/${project.name}/${project.name}-${component.version}" includes="*/**" excludes="**/test/**" />
+		</copy>
+
+	</target>
+
+
+	<!-- ====================== -->
+	<!--   War Targets          -->
+	<!-- ====================== -->
+
+
+	<target name="war" description="Produces WAR file from built components.">
+		<antcall inheritall="true" inheritrefs="true" target="war-bundle">
+			<!-- edca-web has no component.properties so additional config required. -->
+			<param file="${basedir}/edca-utilities/component.properties" />
+			<param name="project.name" value="edca-web" />
+			<param name="component.name" value="edca-web" />
+			<param name="component.version" value="0.1" />
+		</antcall>
+	</target>
+
+	<target name="war-bundle" description="Bundle all of the necessary artifacts.">
+		<mkdir dir="${war.build.dir}" />
+		<copy todir="${war.build.dir}" preservelastmodified="true">
+			<fileset dir="${edca.root}/web">
+
+			</fileset>
+		</copy>
+
+		<echo message="Copying framework jars:	${edca.build.dir}/edca-web/framework/jars" />
+		<echo message="						and ${edca.build.dir}/edca-services/framework/jars" />
+		<copy todir="${war.build.dir}/WEB-INF/lib" preservelastmodified="true" failonerror="true">
+			<fileset dir="${edca.build.dir}/edca-da/framework/jars" includes="**/*.jar" excludes="**/edca*.jar" />
+			<fileset dir="${edca.build.dir}/edca-web/framework/jars" includes="**/*.jar" excludes="**/edca*.jar" />
+			<fileset dir="${edca.build.dir}/edca-utilities/framework/jars" includes="**/*.jar" excludes="**/edca*.jar" />
+			<fileset dir="${edca.build.dir}/edca-services/framework/jars" includes="**/*.jar" excludes="**/edca*.jar" />
+		</copy>
+		<copy todir="${war.build.dir}/WEB-INF/lib" preservelastmodified="true" failonerror="true" flatten="true">
+			<fileset dir="${edca.build.dir}" includes="**/edca*.jar" />
+		</copy>
+
+
+		<echo message="Copying project jars:   ${edca.build.dir}/${project.name}/${project.name}-${component.version}" />
+		<echo message="						to ${edca.root}/../Dependancies/bt-repository/${project.name}/${project.name}-${component.version}" />
+		<copy todir="${edca.root}/../Dependancies/bt-repository/${project.name}/${project.name}-${component.version}" overwrite="true" preservelastmodified="true" verbose="true">
+			<fileset dir="${edca.build.dir}/${project.name}/${project.name}-${component.version}" includes="*/**" excludes="**/test/**" />
+		</copy>
+
+
+		<echo message="Copying spring-beans: 	${basedir}/../configs/edca-da/spring-beans"/>
+		<echo message="						and ${basedir}/../configs/edca-web/spring-beans"/>
+		<echo message="						and ${basedir}/../configs/edca-utilities/spring-beans"/>
+		<echo message="						and ${basedir}/../configs/edca-services/spring-beans"/>
+
+		<copy todir="${war.build.dir}/WEB-INF/spring-beans" preservelastmodified="true" failonerror="true">
+			<fileset dir="${basedir}/../configs/edca-da/spring-beans" includes="**/*.xml"/>
+			<fileset dir="${basedir}/../configs/edca-web/spring-beans" includes="**/*.xml"/>
+			<fileset dir="${basedir}/../configs/edca-utilities/spring-beans" includes="**/*.xml"/>
+			<fileset dir="${basedir}/../configs/edca-services/spring-beans" includes="**/*.xml"/>
+		</copy>
+
+		<echo message="Copying Hibernate xml"/>
+		<copy todir="${war.build.dir}/WEB-INF/classes" preservelastmodified="true" failonerror="true">
+			<fileset dir="${basedir}/../configs/edca-da/hibernate" includes="**/*.xml"/>
+		</copy>
+		<echo message="Copying log4j xml"/>
+		<copy todir="${war.build.dir}/WEB-INF/classes" preservelastmodified="true" failonerror="true">
+			<fileset dir="${basedir}/../configs/edca-utilities/log4j" includes="**/*.xml"/>
+		</copy>
+
+		<echo message="Creating war file..." />
+		<jar destfile="${edca.dist.dir}/web-${webapp.version}.war" basedir="${war.build.dir}" />
+	</target>
+
+	<!-- ====================== -->
+	<!--   Junit Targets          -->
+	<!-- ====================== -->
+
+	<echo message="Including all jars in classpath" />
+	<path id="junit.class.path">
+		<fileset dir="${edca.dist.dir}/war/WEB-INF/lib">
+			<include name="**/*.jar" />
+		</fileset>
+
+	</path>
+
+	<target name="junit" >
+		<echo message="Creating Reports Folder" />
+		<mkdir dir="${junit.report}"/>
+		<echo message="Copying Junit Context" />
+
+		<copy todir="${junit.classpath}" preservelastmodified="true" failonerror="true">
+			<fileset dir="${edca.root}/web/WEB-INF" includes="**/*junitContext.xml"/>
+		</copy>
+		<echo message="Copying Spring Beans XMLs" />
+		<copy todir="${junit.classpath}" preservelastmodified="true" failonerror="true">
+			<fileset dir="${war.build.dir}/WEB-INF/spring-beans" includes="**/*.xml"/>
+		</copy>
+		<echo message="Copying Hibernate XMLs" />
+		<copy todir="${junit.classpath}" preservelastmodified="true" failonerror="true">
+			<fileset dir="${war.build.dir}/WEB-INF/classes" includes="**/*.xml"/>
+		</copy>
+		<junit printsummary="yes" haltonfailure="no">
+
+			<classpath refid="junit.class.path" />
+			<classpath location="${junit.classpath}" />
+
+			<formatter type="xml" />
+
+
+			<batchtest fork="yes" todir="${junit.report}">
+				<fileset dir="${junit.classpath}">
+					<include name="**/*WebTestSuite.class" />
+				</fileset>
+			</batchtest>
+
+		</junit>
+	</target>
+
+	<path id="pmd.classpath">
+		<fileset dir="${basedir}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+
+	<target name="pmd">
+		<mkdir dir="${pmd.report}"/>
+		<taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpathref="pmd.classpath"/>
+		<pmd shortFilenames="true">
+			<ruleset>rulesets/java/basic.xml</ruleset>
+			<ruleset>rulesets/java/design.xml</ruleset>
+			<ruleset>rulesets/java/braces.xml</ruleset>
+			<ruleset>rulesets/java/clone.xml</ruleset>
+			<ruleset>rulesets/java/codesize.xml</ruleset>
+			<ruleset>rulesets/java/finalizers.xml</ruleset>
+			<ruleset>rulesets/java/imports.xml</ruleset>
+			<ruleset>rulesets/java/j2ee.xml</ruleset>
+			<ruleset>rulesets/java/javabeans.xml</ruleset>
+			<ruleset>rulesets/java/logging-java.xml</ruleset>
+			<ruleset>rulesets/java/naming.xml</ruleset>
+			<ruleset>rulesets/java/optimizations.xml</ruleset>
+			<ruleset>rulesets/java/strictexception.xml</ruleset>
+			<ruleset>rulesets/java/strings.xml</ruleset>
+			<ruleset>rulesets/java/sunsecure.xml</ruleset>
+			<ruleset>rulesets/java/typeresolution.xml</ruleset>
+			<ruleset>rulesets/java/unusedcode.xml</ruleset>
+			<formatter type="xml" toFile="${pmd.report}/pmd.xml"/>
+			<fileset dir="${edca.src.dir}">
+				<include name="**/*.java"/>
+			</fileset>
+		</pmd>
+	</target>
+
+
+	<target name="findbugs"
+	           
+	            description="Run code analysis over code to check for problems."
+	    >
+
+		<taskdef name="findbugs"
+	                 classname="edu.umd.cs.findbugs.anttask.FindBugsTask"
+	                 classpath="${findbugs.home.dir}/lib/findbugs-ant.jar"
+	        />
+
+		<!-- Run FindBugs. -->
+		<mkdir dir="${findbugs.report}" />
+		<findbugs home="${findbugs.home.dir}"
+	                  workHard="true"
+	                  output="xml:withMessages"
+	                  outputFile="${findbugs.report}/findbugs.xml"
+	        >
+		
+			<class location="${edca.build.dir}/edca-utilities/classes" />
+			<class location="${edca.build.dir}/edca-da/classes" />
+			<class location="${edca.build.dir}/edca-services/classes" />
+			<class location="${edca.build.dir}/edca-web/classes" />
+		</findbugs>
+	</target>
+
+
+	<target name="checkstyle" 
+	        description="Generate a report of code convention violations.">
+		<taskdef resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties"
+	                 classpath="${checkstyle.home.dir}/checkstyle-6.10-all.jar"
+	        />
+
+	
+		
+		<mkdir dir="${report.checkstyle.dir}" />
+
+		<!-- run analysis-->
+		<checkstyle config="${checkstyle.home.dir}/sun_checks.xml" failOnViolation="false">
+			<formatter type="xml" tofile="${report.checkstyle.dir}/checkstyle_report.xml" />
+			<fileset dir="${edca.src.dir}"><include name="**/*.java"/><exclude name="**/*CustomerContactDetailsController.java"/> </fileset>
+		
+		</checkstyle>
+
+		
+	</target>
+
+</project>

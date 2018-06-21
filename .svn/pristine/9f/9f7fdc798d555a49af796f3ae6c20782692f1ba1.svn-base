@@ -1,0 +1,45 @@
+package com.bt.edca.common.dto;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author Jagankumar G.
+ * DTO class for PrimarySiteContact and SecondarySiteContact lists. 
+ *
+ */
+public class SiteContactTypesDTO {
+  
+  private List<SiteContactDetailsDTO> primaryContactTypeList;
+  
+  private List<SiteContactDetailsDTO> secondaryContactTypeList;
+
+  public List<SiteContactDetailsDTO> getPrimaryContactTypeList() {
+    return primaryContactTypeList;
+  }
+
+  public void setPrimaryContactTypeList(List<SiteContactDetailsDTO> primaryContactTypeList) {
+    this.primaryContactTypeList = primaryContactTypeList;
+  }
+
+  public List<SiteContactDetailsDTO> getSecondaryContactTypeList() {
+    return secondaryContactTypeList;
+  }
+
+  public void setSecondaryContactTypeList(List<SiteContactDetailsDTO> secondaryContactTypeList) {
+    this.secondaryContactTypeList = secondaryContactTypeList;
+  }
+  
+  
+  /**
+   * Constructor for SiteContactTypesDTO.
+   */
+  public SiteContactTypesDTO() {
+    this.primaryContactTypeList = new ArrayList<SiteContactDetailsDTO>();
+    this.secondaryContactTypeList = new ArrayList<SiteContactDetailsDTO>();
+   
+  }
+
+  
+
+}

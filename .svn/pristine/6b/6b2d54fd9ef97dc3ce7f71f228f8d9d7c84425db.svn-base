@@ -1,0 +1,155 @@
+package com.bt.edca.service.impl;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+
+
+import com.bt.edca.common.dto.SiteContactDetailsDTO;
+
+import com.bt.edca.da.domain.SiteContactDetailsDomain;
+import com.bt.edca.dao.SiteContactDetailsDao;
+import com.bt.edca.service.SiteContactDetailsService;
+import com.bt.edca.service.constants.EdcaServiceConstants;
+import com.bt.edca.util.HelperMethods;
+import com.bt.edca.util.helper.CustomerContactDetailsType;
+import com.bt.edca.util.helper.SiteContactTypeDetails;
+
+/**
+ * Description : Implementation of interface(SiteContactDetailsService) .
+ * 
+ * @author Rohit
+ */
+public class SiteContactDetailsServiceImpl implements SiteContactDetailsService {
+  /**
+   * Description : Object of SiteContactDetailsDao(for getting the Database
+   * connection) .
+   */
+  private SiteContactDetailsDao siteContactDetailsDao;
+
+  /**
+   * Description : Method for performing operation over the values fetched from
+   * the data base(service method) .
+   * 
+   * @param siteLocationId.
+   * @return customerContactDetailsMap.
+   */
+
+  @SuppressWarnings("unchecked")
+  public Map<String, List> getSiteContactDetails(String siteLocationId) {
+
+    String[] siteContactTypeArray = getSiteContactRelatedTypes();
+    List<SiteContactDetailsDomain> customerContactDetailsList = (
+        List<SiteContactDetailsDomain>) siteContactDetailsDao
+        .getSiteContactDetails(siteLocationId, siteContactTypeArray);
+
+    Map<String, List> customerContactDetailsMap = 
+        populateSiteContactTypes(customerContactDetailsList);
+
+    return customerContactDetailsMap;
+
+  }
+
+  /**
+   * method to get the contactTypes from enum class.
+   * 
+   * @return contactTypes array.
+   */
+  private String[] getSiteContactRelatedTypes() {
+    String[] siteContactTypeArray = new String[2];
+    siteContactTypeArray[0] = SiteContactTypeDetails.PRIMARYCONTACTTYPE.getContactType();
+    siteContactTypeArray[1] = SiteContactTypeDetails.SECONDARYCONTACTYPE.getContactType();
+
+    return siteContactTypeArray;
+  }
+
+  /**
+   * method to return the contactLists of specific types.
+   * 
+   * @param siteContactTypeDetailsList.
+   * @return contactType Map.
+   */
+  private Map<String, List> populateSiteContactTypes(
+      List<SiteContactDetailsDomain> siteContactTypeDetailsList) {
+    Map<String, List> contactTypeMap = new HashMap<String, List>();
+
+    List<SiteContactDetailsDTO> primaryContactTypeList = new ArrayList<SiteContactDetailsDTO>();
+    List<SiteContactDetailsDTO> secondaryContactTypeList = new ArrayList<SiteContactDetailsDTO>();
+
+    if (!HelperMethods.isNullOrEmpty(siteContactTypeDetailsList)) {
+      for (SiteContactDetailsDomain siteContactTypeDomain : siteContactTypeDetailsList) {
+        if (SiteContactTypeDetails.PRIMARYCONTACTTYPE.getContactType()
+            .equalsIgnoreCase(siteContactTypeDomain.getContactType())) {
+          primaryContactTypeList.add(convertContactTypeDomainToDTO(siteContactTypeDomain));
+        } else if (SiteContactTypeDetails.SECONDARYCONTACTYPE.getContactType()
+            .equalsIgnoreCase(siteContactTypeDomain.getContactType())) {
+          secondaryContactTypeList.add(convertContactTypeDomainToDTO(siteContactTypeDomain));
+        }
+      }
+    }
+
+    contactTypeMap.put(EdcaServiceConstants.PRIMARYCONTACTTYPELIST, primaryContactTypeList);
+    contactTypeMap.put(EdcaServiceConstants.SECONDARYCONTACTTYPELIST, secondaryContactTypeList);
+
+    return contactTypeMap;
+  }
+
+  /**
+   * method to set the values to dto fetching from domain.
+   * 
+   * @param siteContactTypeDomain.
+   * @return SiteContactDetailsDTO.
+   */
+  public SiteContactDetailsDTO convertContactTypeDomainToDTO(
+      SiteContactDetailsDomain siteContactTypeDomain) {
+
+    SiteContactDetailsDTO siteContactDetailsDTO = new SiteContactDetailsDTO();
+
+    siteContactDetailsDTO.setContactId(siteContactTypeDomain.getContactId());
+    siteContactDetailsDTO.setContactType(siteContactTypeDomain.getContactType());
+    siteContactDetailsDTO.setFirstName(siteContactTypeDomain.getFirstName());
+    siteContactDetailsDTO.setLastName(siteContactTypeDomain.getLastName());
+    siteContactDetailsDTO.setJobTitle(siteContactTypeDomain.getJobTitle());
+    siteContactDetailsDTO.setEmail(siteContactTypeDomain.getEmail());
+    siteContactDetailsDTO.setTelephone(siteContactTypeDomain.getTelephone());
+    siteContactDetailsDTO.setMobilePager(siteContactTypeDomain.getMobilePager());
+    siteContactDetailsDTO.setSiteLocationId(siteContactTypeDomain.getSiteLocationId());
+
+    return siteContactDetailsDTO;
+
+  }
+
+  /**
+   * Description : Getter method for getting the database connection from DAO .
+   * 
+   * @return siteContactDetailsDao .
+   */
+  public SiteContactDetailsDao getSiteContactDetailsDao() {
+    return siteContactDetailsDao;
+  }
+
+  /**
+   * Description : Setter method for SiteContactDetailsDao .
+   * 
+   * @param SiteContactDetailsDao
+   *          . .
+   */
+  public void setSiteContactDetailsDao(SiteContactDetailsDao siteContactDetailsDao) {
+    this.siteContactDetailsDao = siteContactDetailsDao;
+  }
+
+  /**
+   * method implementation to save SiteContactDetails.
+   */
+  public String saveSiteContactDetails(String siteLocationId, HttpServletRequest request) {
+
+    siteContactDetailsDao.saveSiteContactDetails(siteLocationId, request);
+
+    return null;
+
+  }
+}

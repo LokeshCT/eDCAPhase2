@@ -1,0 +1,128 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <bean id="customerDetailsController" class="com.bt.edca.web.controller.CustomerDetailsController">
+        <property name="customerDetailsService" ref="customerDetailsService"/>
+    </bean>
+    <bean id="additionalInformationController"
+          class="com.bt.edca.web.controller.AdditionalInformationController">
+        <property name="additionalInformationService" ref="additionalInformationService"/>
+
+    </bean>
+    <bean id="productSelectionController" class="com.bt.edca.web.controller.ProductSelectionController">
+        <property name="productSelectionService" ref="productSelectionService"/>
+    </bean>
+    
+    <bean id="siteContactDetailsController" class="com.bt.edca.web.controller.SiteContactDetailsController">
+		<property name="siteContactDetailsService" ref="siteContactDetailsService" />
+	</bean>
+
+    <bean id="cpeOrderingController" class="com.bt.edca.web.controller.CPEOrderingController">
+        <property name="cpeOrderingService" ref="cpeOrderingService"/>
+    </bean>
+    
+ 
+    	
+	<bean id="orderSearchController" class="com.bt.edca.web.controller.OrderSearchController" >
+		<property name = "orderSearchService" ref = "orderSearchService"/> 		 		
+ 	</bean>
+	
+ 	<bean id="readOrderController" class="com.bt.edca.web.controller.ReadOrderController" >			 		
+ 	</bean>
+
+
+
+ 	
+ 	<bean id="userDetailsProfileController" class="com.bt.edca.web.controller.UserDetailsProfileController" >
+ 		<property name = "userDetailsService" ref = "userDetailsService"/> 
+ 	</bean>
+ 
+ <bean id="cpeConfigureController" class="com.bt.edca.web.controller.CPEConfigureController" >
+ 		<property name = "cpeConfigureService" ref = "cpeConfigureService"/> 
+ 	</bean>
+ 	<bean id="customerContactDetailsController" class="com.bt.edca.web.controller.CustomerContactDetailsController">
+ 		<property name="customerContactDetailsService" ref="customerContactDetailsService"/>
+ 	</bean>
+ 	
+ 	<bean id="orderContactDetailsController" class="com.bt.edca.web.controller.OrderContactDetailsController"> 
+  		<property name="customerContactDetailsService" ref="customerContactDetailsService"/> 
+  	</bean> 
+ 	
+ 	
+ 	<bean id="siteLocationDetailsController" class="com.bt.edca.web.controller.SiteLocationDetailsController">
+ 		<property name="siteLocationDetailsService" ref="siteLocationDetailsService"/>
+ 	</bean>
+ 	
+ 	<bean id="sitePageController" class="com.bt.edca.web.controller.SitePageController" >
+		<property name = "sitePageService" ref = "sitePageService"/> 		 		
+ 	</bean>
+ 	<bean id="configureAccessTypeController" class="com.bt.edca.web.controller.ConfigureAccessTypeController" >
+		<property name = "configureAccessTypeService" ref = "configureAccessTypeService"/> 		 		
+ 	</bean>
+
+ 	 	
+ 	<bean id="configureLanSwitchNetController" class="com.bt.edca.web.controller.ConfigureLanSwitchNetScreenController" >
+ 			<property name = "configureLanSwitchNetScreenService" ref = "configureLanSwitchNetScreenService"/> 				 		
+ 	</bean>
+ 	
+ 	
+
+ 	<bean id="siteAddressController" class="com.bt.edca.web.controller.SiteAddressController" >
+		<property name = "siteAddressService" ref = "siteAddressService"/> 		 		
+ 	</bean>
+
+ 	  <bean id="siteLocationsController" class="com.bt.edca.web.controller.SiteLocationsController">
+        <property name="siteLocationsService" ref="siteLocationsService"/>
+    </bean>
+    
+    
+    
+<bean id="serviceInstancesController" class="com.bt.edca.web.controller.ServiceInstancesController">
+        <property name="serviceInstancesService" ref="serviceInstancesService"/>
+    </bean>
+    
+<bean id="configureAccessController" class="com.bt.edca.web.controller.ConfigureAccessController">
+ 	   <property name = "configureAccessService" ref = "configureAccessService"/> 
+ 	</bean>
+ 	
+ 	<bean id="sitesPageDetailsController" class="com.bt.edca.web.controller.SitesPageDetailsController" >
+		<property name = "sitesPageDetailsService" ref = "sitesPageDetailsService"/> 		 		
+ 	</bean>
+ 	 	
+ 	<bean id="pageRedirectionController" class="com.bt.edca.web.controller.PageRedirectionController" >			 		
+ 	</bean>
+
+ 	
+ 	<bean id="vpnPageController" class="com.bt.edca.web.controller.VpnPageController" >	
+ 		 <property name="vpnPageService" ref="vpnPageService"/>		 		
+ 	</bean>
+
+ 	<bean id="configureWicnmpaController" class="com.bt.edca.web.controller.ConfigureWicnmpaController" >			 		
+ 	</bean>
+ 	<bean id="vpnConnectionController" class="com.bt.edca.web.controller.VpnConnectionController" >			 		
+ 	</bean>
+ 	<bean id="vpnServiceController" class="com.bt.edca.web.controller.VpnServiceController" >			 		
+ 	</bean>
+ 	<bean id="configureLanCardsController" class="com.bt.edca.web.controller.ConfigureLanCardsController">
+		<property name="configureLanCardsService" ref="configureLanCardsService" />
+	</bean>
+	<bean id="dscpCosController" class="com.bt.edca.web.controller.DSCPCosController">
+	</bean>
+
+	
+	<bean id="configureVlanController" class="com.bt.edca.web.controller.ConfigureVlanController">
+	<property name="configureVlanService" ref="configureVlanService" />
+	</bean>
+
+	
+	<bean id="vpnServicesDetailsController" class="com.bt.edca.web.controller.VPNServicesDetailsController" >
+		<property name = "vpnServicesDetailsService" ref = "vpnServicesDetailsService"/> 		 		
+ 	</bean>
+	 <bean id="configureOtherDevicesController" class="com.bt.edca.web.controller.ConfigureOtherDevicesController">
+        <property name="configureOtherDeviceService" ref="configureOtherDeviceService"/>
+    </bean>
+    <bean id="configureCardCableController" class="com.bt.edca.web.controller.ConfigureCardCableController" >			 		
+ 	</bean>
+
+
+</beans>
+

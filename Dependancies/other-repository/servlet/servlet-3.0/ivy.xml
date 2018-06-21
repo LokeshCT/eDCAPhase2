@@ -1,0 +1,6 @@
+<ivy-module version="1.0">
+    <info organisation="servlet" module="servlet" revision="3.0" status="release"/>
+	<publications>
+	    <artifact name="javax.servlet-3.0" type="jar"/>
+   </publications>
+</ivy-module>

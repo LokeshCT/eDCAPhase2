@@ -1,0 +1,18 @@
+<ivy-module version="1.0">
+	<info organisation="bt" module="edca-web" revision="0.1" />
+	<publications>
+		<artifact name="edca-web" type="jar" />	
+		<artifact name="edca-web-bean" type="spring-bean" ext="xml" />		 
+	</publications>
+	<dependencies>
+		<dependency org="spring" name="spring" rev="4.1.7" />
+		<dependency org="servlet" name="servlet" rev="3.0" />
+		<dependency org="bt" name="edca-utilities" rev="0.1"/>
+		<dependency org="bt" name="edca-services" rev="0.1"/>		
+		<dependency org="commons-logging" name="commons-logging" rev="1.2"/>
+		<dependency org="junit" name="junit" rev="4.11" />
+		<dependency org="ojdbc" name="ojdbc" rev="14" />	
+		<dependency org="jstl" name="jstl" rev="1.2" />	
+		<dependency org="jackson" name="jackson" rev="2.6.1" />		
+	</dependencies>
+</ivy-module>

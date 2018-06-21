@@ -1,0 +1,6 @@
+<ivy-module version="1.0">
+    <info organisation="ojdbc" module="ojdbc" revision="14" status="release"/>
+	<publications>
+	    <artifact name="ojdbc-14" type="jar"/>
+   </publications>
+</ivy-module>

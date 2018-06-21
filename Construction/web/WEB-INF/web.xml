@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app id="WebApp_ID" version="2.4" 
+	xmlns="http://java.sun.com/xml/ns/j2ee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<servlet>
+	 	<servlet-name>edca-spring-restful</servlet-name>
+	 	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	 	<load-on-startup>1</load-on-startup>
+	</servlet>
+     
+    <servlet-mapping>
+        <servlet-name>edca-spring-restful</servlet-name>
+        <url-pattern>/edca/*</url-pattern>
+    </servlet-mapping>
+    
+    <context-param>
+        <param-name>spring-beans</param-name>
+        <param-value>/WEB-INF/spring-beans</param-value>
+    </context-param>
+    
+    <listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  	</listener>
+
+	<context-param>
+	    <param-name>contextConfigLocation</param-name>
+	    <param-value>/WEB-INF/applicationContext.xml</param-value>
+	</context-param>
+	
+	
+	
+    <filter>
+        <filter-name>OpenSessionInViewFilter</filter-name>
+        <filter-class>
+           com.bt.edca.da.util.OpenSessionInViewFilter
+        </filter-class>
+        <init-param>
+            <param-name>sessionFactoryBeanName</param-name>
+            <param-value>edcaSessionFactory</param-value>
+        </init-param>
+    </filter>
+	    <filter-mapping>
+        <filter-name>OpenSessionInViewFilter</filter-name>
+        <url-pattern>/edca/*</url-pattern>
+    </filter-mapping>
+	
+ </web-app>

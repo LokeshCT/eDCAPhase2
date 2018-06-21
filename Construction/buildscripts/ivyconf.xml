@@ -1,0 +1,43 @@
+<ivysettings>
+	<properties file="${basedir}/ivyconf.properties"/>
+	<settings DefaultCache="${edca.build.dir}/ivy-cache" defaultResolver="chain-resolver"/>
+
+	<resolvers>
+		<chain name="chain-resolver" >
+			<filesystem name="apis">
+				<artifact pattern="${apis.dependancies.dir}/${ivy.artifact.pattern.one}" />
+				<!-- Framework/Construction/netc_os/osourcefwbin/[module]/[module]-[revision]/[type]s/[artifact].[ext] -->
+				<artifact pattern="${apis.dependancies.dir}/${ivy.artifact.pattern.two}" />
+				<!-- Framework/Construction/netc_os/osourcefwbin/[module]/[module]-[revision]/[type]s/[artifact]-[revision].[ext] -->
+				<ivy pattern="${apis.dependancies.dir}/${ivy.xml.pattern.one}" />
+				<!-- Framework/Construction/netc_os/osourcefwbin/[module]/[module]-[revision]/[module]-[revision]_ivy.xml -->
+				<ivy pattern="${apis.dependancies.dir}/${ivy.xml.pattern.two}" />
+				<!-- Framework/Construction/netc_os/osourcefwbin/[module]/[module]-[revision]/ivy.xml -->
+			</filesystem>
+			<filesystem name="btapis">
+				<!-- Framework/Construction/netc_os/componentbin/[PATTERN] -->
+				<artifact pattern="${btapis.dependancies.dir}/${ivy.artifact.pattern.one}" />
+				<!-- Framework/Construction/netc_os/componentbin/[module]/[module]-[revision]/[type]s/[artifact].[ext] -->
+				<artifact pattern="${btapis.dependancies.dir}/${ivy.artifact.pattern.two}" />
+				<!-- Framework/Construction/netc_os/componentbin/[module]/[module]-[revision]/[type]s/[artifact]-[revision].[ext] -->
+				<ivy pattern="${btapis.dependancies.dir}/${ivy.xml.pattern.one}" />
+				<!-- Framework/Construction/netc_os/componentbin/[module]/[module]-[revision]/[module]-[revision]_ivy.xml -->
+				<ivy pattern="${btapis.dependancies.dir}/${ivy.xml.pattern.two}" />
+				<!-- Framework/Construction/netc_os/componentbin/[module]/[module]-[revision]/ivy.xml -->
+			</filesystem>
+			<filesystem name="localapis">
+				<artifact pattern="${localapis.dependancies.dir}/components/${ivy.artifact.pattern.one}" />
+				<!-- Deliverables/[module]/[module]-[revision]/[type]s/[artifact].[ext] - -->
+				<artifact pattern="${localapis.dependancies.dir}/components/${ivy.artifact.pattern.two}" />
+				<!-- Deliverables/[module]-[revision]/[type]s/[artifact]-[revision].[ext] -->
+				<ivy pattern="${localapis.dependancies.dir}/components/${ivy.xml.pattern.one}" />
+				<!-- Deliverables/[module]/[module]-[revision]/[module]-[revision]_ivy.xml -->
+				<ivy pattern="${localapis.dependancies.dir}/components/${ivy.xml.pattern.two}" />
+				<!-- Deliverables/[module]/[module]-[revision]/ivy.xml -->
+			</filesystem>
+		</chain>
+	</resolvers>
+	<modules>
+		<module organisation="bt" name=".*" resolver="chain-resolver"/>
+	</modules>
+</ivysettings>

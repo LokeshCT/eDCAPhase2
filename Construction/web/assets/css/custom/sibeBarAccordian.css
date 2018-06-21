@@ -1,0 +1,95 @@
+ul.sideBarTree {
+  opacity: 0;
+  margin-left: 0;
+  padding: 1.2em;
+}
+ul.sideBarTree ul {
+  margin-left: 1em;
+}
+ul.sideBarTree li {
+  list-style: none;
+}
+ul.sideBarTree a {
+  display: block;
+  text-decoration: none;
+}
+ul.sideBarTree li.sideBarTree-node > a {
+  font-weight: bold;
+}
+
+ul.sideBarTree a {
+  -webkit-transition: all 300ms ease-out;
+  -moz-transition: all 300ms ease-out;
+  -ms-transition: all 300ms ease-out;
+  -o-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+}
+
+
+ul.sideBarTree.transit {
+  background: #835BB6;
+}
+ul.sideBarTree.transit ul {
+  margin-left: 0;
+}
+ul.sideBarTree.transit ul > li {
+ font-size: 12px;
+}
+ul.sideBarTree.transit li.sideBarTree-node {
+  position: relative;
+}
+ul.sideBarTree.transit li.sideBarTree-node > a:before {
+  color: #CCC;
+  font-weight: normal;
+  position: absolute;
+  right: 20px;
+}
+ul.sideBarTree.transit li.sideBarTree-open > a:before {
+  content: '-';
+}
+ul.sideBarTree.transit li.sideBarTree-closed > a:before {
+  content: '+';
+}
+ul.sideBarTree.transit ul > li:first-child {
+  margin-top: 1px;
+}
+ul.sideBarTree.transit li.sideBarTree-open > a {
+  background: #6A3793;
+}
+ul.sideBarTree.transit li > a:hover, ul.sideBarTree.transit li.sideBarTree-active > a {
+  background: #6A3793;
+  color: #FFF;
+}
+ul.sideBarTree.transit li.sideBarTree-node > ul > li:last-child {
+  margin-bottom: .5em;
+  padding-bottom: .5em;
+  border-bottom: 1px solid #333;
+}
+ul.sideBarTree.transit li.sideBarTree-node:last-child > ul > li:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+ul.sideBarTree.transit a {
+  padding: 5px 0px 5px 0.8em;
+  color: #CCC;
+}
+ul.sideBarTree.transit li li > a {
+  padding-left: 1.6em;
+}
+ul.sideBarTree.transit li li li > a {
+  padding-left: 2.4em;
+}
+ul.sideBarTree.transit li li li li > a {
+  padding-left: 3.2em;
+}
+ul.sideBarTree.transit li li li li li > a {
+  padding-left: 4em;
+}
+.sideBarTree-demo .sideBarTree {
+  background: #EEE;
+  margin: 20px auto;
+  max-width: 320px;
+  border-radius: 3px;
+}
+

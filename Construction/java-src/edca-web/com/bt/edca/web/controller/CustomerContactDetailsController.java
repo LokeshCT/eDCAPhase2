@@ -1,0 +1,163 @@
+package com.bt.edca.web.controller;
+
+import com.bt.edca.common.dto.CustomerContactDTO;
+import com.bt.edca.common.dto.OrderContactDTO;
+import com.bt.edca.service.CustomerContactDetailsService;
+import com.bt.edca.service.constants.EdcaServiceConstants;
+import com.bt.edca.web.constants.EdcaWebConstants;
+
+import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Description: Controller returns to view with model.
+ * 
+ * @param orderId.
+ * @author Jagankumar G.
+ *
+ */
+@Controller
+public class CustomerContactDetailsController {
+
+  /**
+  * Constant for JSP customerContactDetails.
+  */
+  private static final String CUSTOMER_CONTACT_DETAILS = "customerContactDetails";
+
+  /**
+  * Holds the model for the View.
+  */
+  private static final String CUSTOMER_CONTACT_DTO = "customerContactDTO";
+  /**
+  * All the fields on the view are disabled.
+  */
+  private static final String IS_DISABLED = "isDisabled";
+  
+  private static final String TRUE = "false";
+
+  /**
+  * Description:Interface CustomerContactDetailsService.
+  *
+  */
+  @Autowired
+  private CustomerContactDetailsService customerContactDetailsService;
+
+  /**
+  * Description:Service layer method is implentedj
+  * 
+  * @return customerContactDetailsService.
+  */
+  public CustomerContactDetailsService getCustomerContactDetailsService() {
+    return customerContactDetailsService;
+  }
+
+  /**
+   * Decription: Sets the value for CustomeContactDetailsService. Fetches the
+   * orderId.
+   * 
+   * @param customerContactDetailsService.
+   */
+  public void setCustomerContactDetailsService(
+      CustomerContactDetailsService customerContactDetailsService) {
+    this.customerContactDetailsService = customerContactDetailsService;
+}
+
+  /**
+   * Description: Implements based on Request URL it return to Jsp Page.
+   * 
+   * @param orderId.
+   * @return view customerContactDetails model customerContactDTO.
+   */
+  @RequestMapping(value = { "/customercontactdetails/{orderId}" }, method = RequestMethod.GET)
+  public ModelAndView getCustomerContactDetails(
+      @PathVariable(EdcaWebConstants.ORDER_ID) String orderId,HttpSession session) {
+
+    Map<String, List> customerContactDetailsMap = new HashMap<String, List>();
+    Map<String, Object> model = new HashMap<String, Object>();
+    session.setAttribute("orderId", orderId);
+
+    customerContactDetailsMap = customerContactDetailsService.contactDetailsList(orderId);
+    CustomerContactDTO customerContactDTO = populateCustomerContacts(customerContactDetailsMap);
+    model.put(CUSTOMER_CONTACT_DTO, customerContactDTO);
+    model.put(IS_DISABLED, TRUE);
+
+    return new ModelAndView(CUSTOMER_CONTACT_DETAILS, model);
+
+	}
+
+  /** 
+  * Description:Method to save the submitted details in OrderContactDetails.
+  * @param customerContactDTO.
+  * @param session,orderContactDTO.
+  * @returns to addditionalInformation.
+  */
+  @RequestMapping(value = { "/saveTechnicalContactDetails" }, method = RequestMethod.GET)
+  public @ResponseBody String saveTechnicalContactDetails(
+@ModelAttribute("customerContactDTO") OrderContactDTO customerContactDTO,
+      HttpSession session, RedirectAttributes redirectAttrs) {
+	  
+	  System.out.println("In controller");
+
+    ModelAndView view = new ModelAndView("customerContactDetails");
+	Map<String, Object> model = new HashMap<String, Object>();
+    String orderId = null;
+
+    orderId = (String) session.getAttribute("orderId");
+    List<OrderContactDTO> technicalContactDetailsList = customerContactDetailsService
+				.saveTechnicalContactDetails(customerContactDTO, orderId);
+
+    
+    model.put("technicalContactDetailsList",technicalContactDetailsList);
+    
+    String response="Success";
+    return response;
+} 
+
+  /**
+  * Decription: Populates the ContactType lists to Wrapper class
+  * CustomerContactDTO.
+  * @param customerContactDetailsMap
+  *            that has three contact lists.
+  * 
+  * @return customerContactDTO.
+  */
+  @SuppressWarnings("unchecked")
+  public CustomerContactDTO populateCustomerContacts(Map<String, List> customerContactDetailsMap) {
+ CustomerContactDTO customerContactDTO = new CustomerContactDTO();
+
+    for (Map.Entry<String, List> customerContactDetailsMapValue : 
+        customerContactDetailsMap.entrySet()) {
+
+      if (EdcaServiceConstants.REUTERSLIST
+          .equalsIgnoreCase(customerContactDetailsMapValue.getKey())) {
+        customerContactDTO.setReutersContactList(customerContactDetailsMapValue.getValue());
+
+      } else if (EdcaServiceConstants.COMMERCIALLIST
+          .equalsIgnoreCase(customerContactDetailsMapValue.getKey())) {
+        customerContactDTO.setCommercialContactList(customerContactDetailsMapValue.getValue());
+
+      } else if (EdcaServiceConstants.TECHNICALDETAILSLIST
+          .equalsIgnoreCase(customerContactDetailsMapValue.getKey())) {
+        customerContactDTO.setTechnicalContactList(customerContactDetailsMapValue.getValue());
+
+      }
+
+    }
+
+    return customerContactDTO;
+
+  }
+
+}

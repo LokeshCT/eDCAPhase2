@@ -1,0 +1,13 @@
+<ivy-module version="1.0">
+	<info organisation="bt" module="edca-utilities" revision="0.1" />
+	<publications>
+		<artifact name="edca-utilities" type="jar" />
+		<artifact name="edca-utilities-bean" type="spring-bean" ext="xml" />			
+	</publications>
+	<dependencies>
+		<dependency org="spring" name="spring" rev="4.1.7" />
+		<dependency org="log4j" name="log4j" rev="2.3" />
+		<dependency org="commons-logging" name="commons-logging" rev="1.2"/>
+		<dependency org="aspectj" name="aspectj" rev="1.8.6" />
+	</dependencies>
+</ivy-module>

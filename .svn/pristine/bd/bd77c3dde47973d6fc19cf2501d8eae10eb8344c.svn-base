@@ -1,0 +1,16 @@
+<ivy-module version="1.0">
+	<info organisation="bt" module="edca-da" revision="0.1" />
+	<publications>
+		<artifact name="edca-da"  type="jar" />
+		<artifact name="edca-da-bean" type="spring-bean" ext="xml" />
+	</publications>
+	<dependencies>
+		<dependency org="quartz" name="quartz" rev="2.2.1" />
+		<dependency org="hibernate" name="hibernate" rev="4.3.10" />		
+		<dependency org="commons-logging" name="commons-logging" rev="1.2"/>		
+		<dependency org="bt" name="edca-utilities" rev="0.1"/>	
+		<dependency org="aopalliance" name="aopalliance" rev="1.0"/>
+		<dependency org="ojdbc" name="ojdbc" rev="14"/>
+		<dependency org="servlet" name="servlet" rev="3.0"/>
+	</dependencies>
+</ivy-module>

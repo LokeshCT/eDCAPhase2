@@ -1,0 +1,171 @@
+package com.bt.edca.web.controller;
+
+import com.bt.edca.common.dto.SiteContactTypesDTO;
+import com.bt.edca.service.SiteContactDetailsService;
+import com.bt.edca.service.constants.EdcaServiceConstants;
+import com.bt.edca.web.constants.EdcaWebConstants;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+/**
+ * Description : This is controller for Site Contact Detail page. When ever
+ * request comes to display the site contact details of a customer this will be
+ * called first .
+ * 
+ * @author Rohit
+ */
+
+@Controller
+public class SiteContactDetailsController {
+
+	/**
+	 * Description : Creating object of SiteContactDetailsService for calling
+	 * the service method .
+	 */
+
+	@Autowired
+	private SiteContactDetailsService siteContactDetailsService;
+
+	/**
+	 * Description : Its a getter for siteContactDetailsService. Returning the
+	 * object of SiteContactDetailsService .
+	 * 
+	 * @return siteContactDetailsService .
+	 */
+
+	public SiteContactDetailsService getSiteContactDetailsService() {
+		return siteContactDetailsService;
+	}
+
+	/**
+	 * Description: Its a setter for setting the value of object
+	 * siteContactDetailsService .
+	 * 
+	 * @param siteContactDetailsService
+	 *            .
+	 */
+	public void setSiteContactDetailsService(SiteContactDetailsService siteContactDetailsService) {
+		this.siteContactDetailsService = siteContactDetailsService;
+	}
+
+	/**
+	 * @param siteLocationId
+	 *            .
+	 * @return model and view object .
+	 */
+	@RequestMapping(value = { "/siteContactDetails/{orderId}" }, method = RequestMethod.GET)
+	public ModelAndView getSiteContactDetail(@RequestParam(EdcaWebConstants.SITE_LOCATION_ID) String siteLocationId,
+			@PathVariable(EdcaWebConstants.ORDER_ID) String orderId,
+			@RequestParam(EdcaWebConstants.SITE_ID) String siteId, HttpSession session) {
+
+		Map<String, List> siteContactDetailsMap = new HashMap<String, List>();
+		Map<String, Object> model = new HashMap<String, Object>();
+		session.setAttribute("orderId", orderId);
+		session.setAttribute("siteLocationId", siteLocationId);
+
+		siteContactDetailsMap = siteContactDetailsService.getSiteContactDetails(siteLocationId);
+		SiteContactTypesDTO siteContactTypesDTO = populateSiteContactTypes(siteContactDetailsMap);
+
+		model.put("siteContactTypesDTO", siteContactTypesDTO);
+		model.put("isDisabled", "false");
+
+		return new ModelAndView("siteContactDetails", model);
+
+	}
+
+	@SuppressWarnings("unchecked")
+	public SiteContactTypesDTO populateSiteContactTypes(Map<String, List> siteContactTypeMap) {
+		SiteContactTypesDTO siteContactTypesDTO = new SiteContactTypesDTO();
+
+		for (Map.Entry<String, List> siteContactDetailsMapValue : siteContactTypeMap.entrySet()) {
+
+			if (EdcaServiceConstants.PRIMARYCONTACTTYPELIST.equalsIgnoreCase(siteContactDetailsMapValue.getKey())) {
+				siteContactTypesDTO.setPrimaryContactTypeList(siteContactDetailsMapValue.getValue());
+
+			} else if (EdcaServiceConstants.SECONDARYCONTACTTYPELIST
+					.equalsIgnoreCase(siteContactDetailsMapValue.getKey())) {
+
+				siteContactTypesDTO.setSecondaryContactTypeList(siteContactDetailsMapValue.getValue());
+
+			}
+
+		}
+
+		return siteContactTypesDTO;
+
+	}
+
+	/**
+	 * Method to save the SiteContactDetails into DB.
+	 * 
+	 * @param request.
+	 * @param session.
+	 * @return Model to the next service.
+	 */
+	@RequestMapping(value = { "/saveSiteContactDetails" }, method = RequestMethod.GET)
+	public ModelAndView saveSiteContactDetails(HttpServletRequest request, HttpSession session) {
+
+		String siteLocationId = (String) session.getAttribute("siteLocationId");
+
+		String scontactid = request.getParameter("s_ContactId");
+		session.setAttribute("s_contact_id", scontactid);
+
+		String sfirstName = request.getParameter("Name");
+		session.setAttribute("s_FirstName", sfirstName);
+
+		String lastName = request.getParameter("l_Name");
+		session.setAttribute("s_LastName", lastName);
+
+		String sjobtitle = request.getParameter("s_JobTile");
+		session.setAttribute("s_JobTitle", sjobtitle);
+
+		String semail = request.getParameter("s_Email");
+		session.setAttribute("s_Email", semail);
+
+		String stelephone = request.getParameter("s_Telephone");
+		session.setAttribute("s_Telephone", stelephone);
+
+		String smobilepager = request.getParameter("s_Mobilepager");
+		session.setAttribute("s_Mobilepager", smobilepager);
+
+		String pcontactid = request.getParameter("p_Contact_Id");
+		session.setAttribute("p_contact_id", pcontactid);
+
+		String pfirstName = request.getParameter("p_FirstName");
+		session.setAttribute("p_firstName", pfirstName);
+
+		String plastName = request.getParameter("p_lastName");
+		session.setAttribute("p_lastName", plastName);
+
+		String pjobtitle = request.getParameter("p_JobTitle");
+		session.setAttribute("p_JobTitle", pjobtitle);
+
+		String pemail = request.getParameter("Email");
+		session.setAttribute("p_Email", pemail);
+
+		String ptelephone = request.getParameter("Telephone");
+		session.setAttribute("p_Telephone", ptelephone);
+
+		String pmobilepager = request.getParameter("Mobile");
+		session.setAttribute("p_mobilePager", pmobilepager);
+
+		String siteContactDetails = siteContactDetailsService.saveSiteContactDetails(siteLocationId, request);
+
+		return null;
+	}
+
+}
